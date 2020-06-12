@@ -1,26 +1,29 @@
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { HttpLink } from "apollo-link-http";
-import { split } from "apollo-link";
+import { ApolloClient, HttpLink, InMemoryCache, split } from "@apollo/client";
 import { WebSocketLink } from "apollo-link-ws";
+import { Platform } from "react-native";
+
 import { getMainDefinition } from "apollo-utilities";
 import { SubscriptionClient } from "subscriptions-transport-ws";
 
-const HTTPS = "http://localhost:4000/api";
-const WSS = "ws://localhost:4000/subscriptions";
+const HTTPS =
+  Platform.OS === "android"
+    ? "http://10.0.2.2:4000/api"
+    : "http://localhost:4000/api";
+const WSS =
+  Platform.OS === "android"
+    ? "ws://10.0.2.2:4000/subscriptions"
+    : "ws://localhost:4000/subscriptions";
 
-// const token = cookie.get("token")
-const token = "12345";
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTU5MTk3NDA3NiwiZXhwIjoxNjIzNDIzNjc2fQ.tj_S6kymyXdU_EDIeGi9ixvmM-uPCldccmnO2JLyq-0";
 
 const httpLink = new HttpLink({
   uri: HTTPS,
   fetch,
-  credentials: "include",
   headers: {
     Authorization: `Bearer ${token}`
   }
 });
-// const wsForNode = typeof window === "undefined" ? ws : null
 // Create a WebSocket link:
 
 const subscriptionClient = new SubscriptionClient(

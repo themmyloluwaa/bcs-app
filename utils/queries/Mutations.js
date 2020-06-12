@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 const LOGIN_MUTATION = gql`
   mutation login($password: String!, $email: String!) {
