@@ -1,11 +1,16 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import LearningScreen from "../screens/appscreen/LearningScreen";
 
+import ChatScreen from "../screens/messagescreen/ChatScreen";
+import RequestScreen from "../screens/messagescreen/RequestScreen";
+
 const LearningStackNavigator = createStackNavigator();
 const ResourceStackNavigator = createStackNavigator();
 const DiscussionNavigator = createStackNavigator();
 const PastQuestionDiscussionNavigator = createStackNavigator();
 const QuizNavigator = createStackNavigator();
+const ChatNavigator = createStackNavigator();
+const RequestNavigator = createStackNavigator();
 
 const topicDicussionNavigator = () => (
   <DiscussionNavigator.Navigator>
@@ -64,4 +69,20 @@ export const resourceStackNavigator = () => (
       children={pastQuestionDicussionNavigator}
     />
   </ResourceStackNavigator.Navigator>
+);
+
+export const chatNavigator = () => (
+  <ChatNavigator.Navigator initialRouteName="Chats">
+    <ChatNavigator.Screen name="Chats" component={ChatScreen} />
+    <ChatNavigator.Screen name="Chats Chatting" />
+    <ChatNavigator.Screen name="Chats Reciever Profile" />
+  </ChatNavigator.Navigator>
+);
+
+export const requestNavigator = () => (
+  <RequestNavigator.Navigator initialRouteName="Requests">
+    <RequestNavigator.Screen name="Requests" component={RequestScreen} />
+    <RequestNavigator.Screen name="Requests Chatting" />
+    <RequestNavigator.Screen name="Requests Reciever Profile" />
+  </RequestNavigator.Navigator>
 );
