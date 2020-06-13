@@ -34,10 +34,9 @@ const RootComponent = () => {
 
 export default function App() {
   return (
-    <ApolloProvider client={client}>
-      {/* <RootComponent /> */}
-      <RootNavigator />
-    </ApolloProvider>
+    // <ApolloProvider client={client}>
+    <RootNavigator />
+    // </ApolloProvider>
   );
 }
 
