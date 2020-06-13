@@ -1,6 +1,6 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-
+import Icon from "react-native-vector-icons/FontAwesome5";
 const BottomNavigator = createMaterialBottomTabNavigator();
 
 // import LearningScreen from "../screens/appscreen/LearningScreen";
@@ -22,13 +22,34 @@ const createAppNavigator = () => (
       tabBarColor: "#490222"
     }}
   >
-    <BottomNavigator.Screen name="Learning" children={learningStackNavigator} />
+    <BottomNavigator.Screen
+      name="Learning"
+      children={learningStackNavigator}
+      options={{
+        tabBarIcon: () => <Icon name="book-open" size={25} color="#fff" />
+      }}
+    />
     <BottomNavigator.Screen
       name="Resources"
       children={resourceStackNavigator}
+      options={{
+        tabBarIcon: () => <Icon name="file-alt" size={25} color="#fff" />
+      }}
     />
-    <BottomNavigator.Screen name="Messages" children={MessageNavigator} />
-    <BottomNavigator.Screen name="Account" children={mainNavigator} />
+    <BottomNavigator.Screen
+      name="Messages"
+      children={MessageNavigator}
+      options={{
+        tabBarIcon: () => <Icon name="comment-alt" size={25} color="#fff" />
+      }}
+    />
+    <BottomNavigator.Screen
+      name="Account"
+      children={mainNavigator}
+      options={{
+        tabBarIcon: () => <Icon name="user" size={25} color="#fff" />
+      }}
+    />
   </BottomNavigator.Navigator>
 );
 
