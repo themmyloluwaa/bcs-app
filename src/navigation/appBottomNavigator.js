@@ -8,7 +8,7 @@ const BottomNavigator = createMaterialBottomTabNavigator();
 // import MessageScreen from "../screens/appscreen/MessageScreen";
 // import ResourceScreen from "../screens/appscreen/ResourceScreen";
 
-import { messageNavigator } from "./messageNavigator";
+import { MessageNavigator } from "./messageNavigator";
 import {
   learningStackNavigator,
   resourceStackNavigator
@@ -22,7 +22,7 @@ const createAppNavigator = () => (
       name="Resources"
       children={resourceStackNavigator}
     />
-    <BottomNavigator.Screen name="Messages" children={messageNavigator} />
+    <BottomNavigator.Screen name="Messages" children={MessageNavigator} />
     <BottomNavigator.Screen name="Account" children={mainNavigator} />
   </BottomNavigator.Navigator>
 );

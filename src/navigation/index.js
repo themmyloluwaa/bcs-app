@@ -5,6 +5,10 @@ import createAppNavigator from "./appBottomNavigator";
 
 const AppNavigator = createStackNavigator();
 
+// const MinorNavigators = createStackNavigator()
+
+// const generalNavigators =
+
 const AllNavigator = () => (
   <AppNavigator.Navigator
     initialRouteName="App"
