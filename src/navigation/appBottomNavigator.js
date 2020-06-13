@@ -2,17 +2,27 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 
 const BottomNavigator = createMaterialBottomTabNavigator();
 
-import LearningScreen from "../screens/appscreen/LearningScreen";
-import AccountScreen from "../screens/appscreen/AccountScreen";
-import MessageScreen from "../screens/appscreen/MessageScreen";
-import ResourceScreen from "../screens/appscreen/ResourceScreen";
+// import LearningScreen from "../screens/appscreen/LearningScreen";
+// import AccountScreen from "../screens/appscreen/AccountScreen";
+// import MessageScreen from "../screens/appscreen/MessageScreen";
+// import ResourceScreen from "../screens/appscreen/ResourceScreen";
+
+import { messageNavigator } from "./messageNavigator";
+import {
+  learningStackNavigator,
+  resourceStackNavigator
+} from "./appStackNavigators";
+import { mainNavigator } from "./accountStackNavigator";
 
 const createAppNavigator = () => (
   <BottomNavigator.Navigator initialRouteName="Learning">
-    <BottomNavigator.Screen name="Learning" component={LearningScreen} />
-    <BottomNavigator.Screen name="Resources" component={ResourceScreen} />
-    <BottomNavigator.Screen name="Messages" component={MessageScreen} />
-    <BottomNavigator.Screen name="Account" component={AccountScreen} />
+    <BottomNavigator.Screen name="Learning" children={learningStackNavigator} />
+    <BottomNavigator.Screen
+      name="Resources"
+      children={resourceStackNavigator}
+    />
+    <BottomNavigator.Screen name="Messages" children={messageNavigator} />
+    <BottomNavigator.Screen name="Account" children={mainNavigator} />
   </BottomNavigator.Navigator>
 );
 

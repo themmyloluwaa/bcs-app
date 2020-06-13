@@ -5,7 +5,7 @@ import NewChatScreen from "../screens/messagescreen/NewChatScreen";
 const MessageTopNavigator = createMaterialTopTabNavigator();
 
 export const messageNavigator = () => (
-  <MessageTopNavigator.Navigator>
+  <MessageTopNavigator.Navigator initialRouteName="Chats">
     <MessageTopNavigator.Screen name="Chats" children={chatNavigator} />
     <MessageTopNavigator.Screen name="Request" children={requestNavigator} />
     <MessageTopNavigator.Screen name="New" component={NewChatScreen} />
