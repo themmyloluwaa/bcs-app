@@ -16,7 +16,12 @@ import {
 import { mainNavigator } from "./accountStackNavigator";
 
 const createAppNavigator = () => (
-  <BottomNavigator.Navigator initialRouteName="Learning">
+  <BottomNavigator.Navigator
+    initialRouteName="Learning"
+    screenOptions={{
+      tabBarColor: "#490222"
+    }}
+  >
     <BottomNavigator.Screen name="Learning" children={learningStackNavigator} />
     <BottomNavigator.Screen
       name="Resources"
