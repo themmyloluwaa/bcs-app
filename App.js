@@ -5,6 +5,7 @@ import { ApolloProvider, useQuery } from "@apollo/client";
 
 import { client } from "./utils/client";
 import { ME_QUERY } from "./utils/queries/Queries";
+import RootNavigator from "./src/navigation/index";
 
 const instructions = Platform.select({
   ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
@@ -34,7 +35,8 @@ const RootComponent = () => {
 export default function App() {
   return (
     <ApolloProvider client={client}>
-      <RootComponent />
+      {/* <RootComponent /> */}
+      <RootNavigator />
     </ApolloProvider>
   );
 }
