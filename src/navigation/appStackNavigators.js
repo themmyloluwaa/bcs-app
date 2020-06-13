@@ -75,15 +75,24 @@ export const resourceStackNavigator = () => (
 export const chatNavigator = () => (
   <ChatNavigator.Navigator initialRouteName="Chats">
     <ChatNavigator.Screen name="Chats" component={ChatScreen} />
-    <ChatNavigator.Screen name="Chats Chatting" />
-    <ChatNavigator.Screen name="Chats Reciever Profile" />
+    <ChatNavigator.Screen name="Chats Chatting" component={ChatScreen} />
+    <ChatNavigator.Screen
+      name="Chats Reciever Profile"
+      component={ChatScreen}
+    />
   </ChatNavigator.Navigator>
 );
 
 export const requestNavigator = () => (
   <RequestNavigator.Navigator initialRouteName="Requests">
     <RequestNavigator.Screen name="Requests" component={RequestScreen} />
-    <RequestNavigator.Screen name="Requests Chatting" />
-    <RequestNavigator.Screen name="Requests Reciever Profile" />
+    <RequestNavigator.Screen
+      name="Requests Chatting"
+      component={RequestScreen}
+    />
+    <RequestNavigator.Screen
+      name="Requests Reciever Profile"
+      component={RequestScreen}
+    />
   </RequestNavigator.Navigator>
 );

@@ -6,7 +6,12 @@ import createAppNavigator from "./appBottomNavigator";
 const AppNavigator = createStackNavigator();
 
 const AllNavigator = () => (
-  <AppNavigator.Navigator initialRouteName="App">
+  <AppNavigator.Navigator
+    initialRouteName="App"
+    screenOptions={{
+      header: () => null
+    }}
+  >
     <AppNavigator.Screen children={createAppNavigator} name="App" />
   </AppNavigator.Navigator>
 );
