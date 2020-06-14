@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Image,
   Text,
   StyleSheet,
   Dimensions,
-  Animated
+  Animated,
+  FlatList
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
@@ -26,7 +27,7 @@ const illustrations = [
     source: require("../../assets/target_monochromatic.png")
   },
   {
-    id: 33,
+    id: 3,
     title: "Everything you need",
     body:
       "Find all the resources you need to excell in your BCS Certification examinations",
@@ -34,86 +35,76 @@ const illustrations = [
   }
 ];
 
-const OnboardingScreen = props => {
-  //   const [scrollX, setScrollX] = useState(new Animated.Value(0))
-  let scrollX = new Animated.Value(0);
-  let stepPosition = Animated.divide(scrollX, width);
-  let activeIndex = illustrations.indexOf(
-    illustrations[illustrations.length - 1]
-  );
+const scrollX = new Animated.Value(0);
+const stepPosition = new Animated.divide(scrollX, width);
+console.log(stepPosition);
 
-  const renderSteps = () => {
-    return (
-      <View style={styles.sliderContainer}>
-        {illustrations.map((item, index) => {
-          let opacity = stepPosition.interpolate({
-            inputRange: [index - 1, index, index + 1],
-            outputRange: [0.4, 1, 0.4],
-            extrapolate: "clamp"
-          });
+const renderSteps = () => (
+  <View style={styles.stepContainer}>
+    {illustrations.map((item, index) => {
+      const opacity = stepPosition.interpolate({
+        inputRange: [index - 1, index, index + 1],
+        outputRange: [0.4, 1, 0.4],
+        extrapolate: "clamp"
+      });
+      return (
+        <Animated.View
+          style={[styles.stepStyle, { opacity }]}
+          key={`slider-${index}`}
+        ></Animated.View>
+      );
+    })}
+  </View>
+);
 
-          // opacity = 0.2;
+const OnboardingScreen = () => {
+  const [data, setData] = useState("");
 
-          return (
-            <Animated.View
-              style={[styles.slider, { opacity }]}
-              key={`slider-${index}`}
-            ></Animated.View>
-          );
-        })}
-      </View>
-    );
-  };
   return (
-    <View style={styles.container}>
-      <View style={styles.containerImage}>
-        {/* {illustrations.map(illustration => renderIllus(illustration))} */}
-        <Animated.FlatList
+    <>
+      <View style={styles.onboardingContainer}>
+        <FlatList
           horizontal
-          data={illustrations}
+          pagingEnabled
           scrollEnabled
-          // pagingEnabled={true}
           showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={10}
-          keyExtractor={(item, index) => `${item.id}`}
-          renderItem={({ item, index }) => (
+          snapToAlignment="center"
+          data={illustrations}
+          extraData={data}
+          scrollEventThrottle={16}
+          keyExtractor={(item, i) => `${item.id}`}
+          renderItem={({ item }) => (
             <View
-              style={[
-                styles.imageContainer,
-                {
-                  marginRight: activeIndex === index ? 0 : 50
-                }
-              ]}
+              style={{
+                position: "relative",
+                width: width,
+                justifyContent: "center"
+              }}
             >
               <Image
-                style={styles.image}
-                resizeMode="contain"
                 source={item.source}
+                resizeMode="contain"
+                style={styles.imageStyle}
               />
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.body}>{item.body}</Text>
             </View>
           )}
           onScroll={Animated.event(
             [
               {
-                nativeEvent: {
-                  contentOffset: { x: scrollX }
-                }
+                nativeEvent: { contentOffset: { x: scrollX } }
               }
             ],
             { useNativeEvent: true }
           )}
         />
-
         <View>{renderSteps()}</View>
       </View>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  onboardingContainer: {
     display: "flex",
     flex: 1,
     justifyContent: "center",
@@ -121,38 +112,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#490222"
     // color: "#fff"
   },
-  containerImage: {
-    height: height / 1.5,
-    // backgroundColor: "blue",
-    marginHorizontal: 40,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  image: {
-    overflow: "visible"
-  },
-  imageContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 350,
-    height: 450
-    // backgroundColor: "red"
-    // marginRight: 50
-  },
-  title: {
-    textAlign: "center",
-    fontStyle: "normal",
-    fontWeight: "300",
-    fontSize: 24,
-    lineHeight: 36,
-    color: "#FFFFFF",
-    marginVertical: 20
-  },
-  body: {
-    textAlign: "center",
-    width: "70%"
-  },
-  sliderContainer: {
+
+  stepContainer: {
     height: 100,
     width: 200,
     flexDirection: "row",
@@ -160,11 +121,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  slider: {
+  stepStyle: {
     width: 32,
     height: 4,
     backgroundColor: "#eee",
     marginHorizontal: 10
+  },
+  imageStyle: {
+    overflow: "visible",
+    position: "absolute",
+    width: "100%"
+    // height: height / 2
   }
 });
+
 export default OnboardingScreen;
