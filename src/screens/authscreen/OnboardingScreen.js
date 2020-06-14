@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import { Button } from "react-native-elements";
+import { appStyles } from "../../../utils/appStyles";
 
 const { width, height } = Dimensions.get("window");
 
@@ -60,8 +61,6 @@ const renderSteps = () => (
 
 const OnboardingScreen = ({ navigation, route }) => {
   const [data] = useState("");
-  console.log(navigation);
-  console.log(route);
 
   return (
     <>
@@ -120,12 +119,12 @@ const OnboardingScreen = ({ navigation, route }) => {
             backgroundColor: "#500C2B"
           }}
           titleStyle={{
-            color: "#fff"
+            color: appStyles.white
           }}
           buttonStyle={{
-            borderColor: "#fff",
+            borderColor: appStyles.white,
             height: 48,
-            color: "#fff",
+            color: appStyles.white,
             borderBottomWidth: 0.3,
             borderBottomEndRadius: 0
           }}
@@ -139,12 +138,12 @@ const OnboardingScreen = ({ navigation, route }) => {
             marginVertical: 16
           }}
           titleStyle={{
-            color: "#fff"
+            color: appStyles.white
           }}
           buttonStyle={{
-            borderColor: "#fff",
+            borderColor: appStyles.white,
             height: 48,
-            color: "#fff",
+            color: appStyles.white,
             borderBottomWidth: 0.3,
             borderBottomEndRadius: 0
           }}
@@ -161,8 +160,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#490222"
-    // color: "#fff"
+    backgroundColor: appStyles.primary
+    // color: appStyles.white
   },
 
   stepContainer: {
@@ -190,14 +189,14 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     fontSize: 24,
     lineHeight: 36,
-    color: "#FFFFFF",
+    color: appStyles.white,
     marginVertical: 20
   },
   body: {
     textAlign: "center",
     width: "70%",
     fontSize: 20,
-    color: "#FFFFFF"
+    color: appStyles.white
   }
 });
 
