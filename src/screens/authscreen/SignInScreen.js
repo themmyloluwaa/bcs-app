@@ -27,7 +27,10 @@ const SignInScreen = props => {
         </View>
         <View>
           <Input
-            inputContainerStyle={styles.inputContainerStyle}
+            inputContainerStyle={[
+              styles.inputContainerStyle,
+              appStyles.borderRadius5
+            ]}
             inputStyle={{
               right: 16
             }}
@@ -44,7 +47,10 @@ const SignInScreen = props => {
             }}
           />
           <Input
-            inputContainerStyle={styles.inputContainerStyle}
+            inputContainerStyle={[
+              styles.inputContainerStyle,
+              appStyles.borderRadius5
+            ]}
             inputStyle={{
               right: 16
             }}
@@ -62,6 +68,31 @@ const SignInScreen = props => {
             secureTextEntry={true}
           />
         </View>
+        <Button
+          title="SIGN IN"
+          type="outline"
+          containerStyle={[
+            {
+              width: 330,
+              marginVertical: 16,
+
+              backgroundColor: appStyles.primary
+            },
+            appStyles.borderRadius5
+          ]}
+          titleStyle={{
+            color: appStyles.white
+          }}
+          buttonStyle={{
+            borderColor: appStyles.white,
+            height: 48,
+            color: appStyles.white,
+
+            borderBottomWidth: 0.3,
+            borderBottomEndRadius: 0
+          }}
+          onPress={() => navigation.navigate("Sign Up")}
+        />
       </View>
     </View>
   );
@@ -112,10 +143,7 @@ const styles = StyleSheet.create({
   },
   inputContainerStyle: {
     borderWidth: 1,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
+
     width: "85%",
     marginHorizontal: 40,
     paddingHorizontal: 40,
