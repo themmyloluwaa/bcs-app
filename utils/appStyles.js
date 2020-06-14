@@ -1,6 +1,7 @@
 const appStyles = {
   primary: "#490222",
   white: "#fff",
+  black: "#000",
   boxShadow: {
     elevation: 5,
     shadowColor: "#000",
