@@ -9,6 +9,8 @@ import {
   FlatList
 } from "react-native";
 
+import { Button } from "react-native-elements";
+
 const { width, height } = Dimensions.get("window");
 
 const illustrations = [
@@ -109,6 +111,42 @@ const OnboardingScreen = () => {
           />
           <View>{renderSteps()}</View>
         </View>
+        <Button
+          title="SIGN IN"
+          type="outline"
+          containerStyle={{
+            width: 296,
+            backgroundColor: "#500C2B"
+          }}
+          titleStyle={{
+            color: "#fff"
+          }}
+          buttonStyle={{
+            borderColor: "#fff",
+            height: 48,
+            color: "#fff",
+            borderBottomWidth: 0.3,
+            borderBottomEndRadius: 0
+          }}
+        />
+        <Button
+          title="SIGN UP"
+          type="outline"
+          containerStyle={{
+            width: 296,
+            marginVertical: 16
+          }}
+          titleStyle={{
+            color: "#fff"
+          }}
+          buttonStyle={{
+            borderColor: "#fff",
+            height: 48,
+            color: "#fff",
+            borderBottomWidth: 0.3,
+            borderBottomEndRadius: 0
+          }}
+        />
       </View>
     </>
   );
