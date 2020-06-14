@@ -17,6 +17,18 @@ const SignInScreen = props => {
         style={{ width: 300, height: 200 }}
       />
       {/* </View> */}
+      <View
+        style={[
+          {
+            backgroundColor: appStyles.white,
+            width: "100%",
+            height: "100%",
+            borderTopRightRadius: 24,
+            borderTopLeftRadius: 24
+          },
+          appStyles.boxShadow
+        ]}
+      />
     </View>
   );
 };
@@ -24,15 +36,22 @@ const SignInScreen = props => {
 const styles = StyleSheet.create({
   containerStyle: {
     display: "flex",
-    justifyContent: "center",
+    // justifyContent: "center",
+    height: "100%",
+    width: "100%",
     alignItems: "center",
     flex: 1,
     backgroundColor: appStyles.primary
+  },
+  imageContainer: {
+    // display: "flex",
+    // height: 40,
+    // maxHeight: 80,
+    // flex: 1,
+    backgroundColor: "green",
+    // justifyContent: "flex-start",
+    marginVertical: 64.03
   }
-  // imageContainer: {
-  //   justifyContent: "flex-start",
-  //   marginVertical: 32.03
-  // }
 });
 
 export default SignInScreen;
