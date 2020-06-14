@@ -39,7 +39,6 @@ const illustrations = [
 
 const scrollX = new Animated.Value(0);
 const stepPosition = new Animated.divide(scrollX, width);
-console.log(width, height);
 
 const renderSteps = () => (
   <View style={styles.stepContainer}>
@@ -59,8 +58,10 @@ const renderSteps = () => (
   </View>
 );
 
-const OnboardingScreen = () => {
-  const [data, setData] = useState("");
+const OnboardingScreen = ({ navigation, route }) => {
+  const [data] = useState("");
+  console.log(navigation);
+  console.log(route);
 
   return (
     <>
@@ -128,6 +129,7 @@ const OnboardingScreen = () => {
             borderBottomWidth: 0.3,
             borderBottomEndRadius: 0
           }}
+          onPress={() => navigation.navigate("Sign In")}
         />
         <Button
           title="SIGN UP"
@@ -146,6 +148,7 @@ const OnboardingScreen = () => {
             borderBottomWidth: 0.3,
             borderBottomEndRadius: 0
           }}
+          onPress={() => navigation.navigate("Sign Up")}
         />
       </View>
     </>
