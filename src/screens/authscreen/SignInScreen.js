@@ -1,12 +1,12 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Platform } from "react-native";
 import { appStyles } from "../../../utils/appStyles";
 import { Image, Button, Input } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
+// import Icon from "react-native-vector-icons/FontAwesome";
 const source = require("../../assets/target_monochromatic.png");
 
-const SignInScreen = props => {
-  console.log(props);
+const SignInScreen = ({ navigation }) => {
+  const [disabled, setDisabled] = useState(true);
 
   return (
     <View style={styles.containerStyle}>
@@ -14,7 +14,8 @@ const SignInScreen = props => {
       <Image
         source={source}
         containerStyle={styles.imageContainer}
-        style={{ width: 300, height: 200 }}
+        style={{ width: 300, height: 250 }}
+        resizeMode="contain"
       />
       {/* </View> */}
       <View style={[styles.authStyles, appStyles.boxShadow]}>
@@ -72,13 +73,13 @@ const SignInScreen = props => {
           title="SIGN IN"
           type="outline"
           containerStyle={[
+            styles.buttonContainerStyle,
+            appStyles.borderRadius5,
             {
-              width: 330,
-              marginVertical: 16,
-
-              backgroundColor: appStyles.primary
-            },
-            appStyles.borderRadius5
+              backgroundColor: disabled
+                ? "rgba(73, 2, 34, 0.7);"
+                : appStyles.primary
+            }
           ]}
           titleStyle={{
             color: appStyles.white
@@ -91,8 +92,41 @@ const SignInScreen = props => {
             borderBottomWidth: 0.3,
             borderBottomEndRadius: 0
           }}
-          onPress={() => navigation.navigate("Sign Up")}
+          disabled={disabled}
+          disabledTitleStyle={{
+            color: appStyles.white
+          }}
         />
+        <View style={styles.secondaryContainerStyle}>
+          <Text
+            style={{
+              fontSize: 16,
+              lineHeight: 34,
+              color: "rgba(53, 53, 53, 0.8)"
+            }}
+          >
+            Don’t have an account yet?{" "}
+            <Text
+              style={{
+                color: appStyles.primary,
+                fontSize: 16
+              }}
+              onPress={() => navigation.navigate("Sign Up")}
+            >
+              Sign up
+            </Text>
+          </Text>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 16,
+              color: appStyles.primary
+            }}
+            onPress={() => navigation.navigate("Forgot Password")}
+          >
+            Forgot password?
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -108,8 +142,8 @@ const styles = StyleSheet.create({
     backgroundColor: appStyles.primary
   },
   imageContainer: {
-    backgroundColor: "green",
-    marginVertical: 64.03
+    // backgroundColor: "green",
+    marginVertical: Platform.OS === "android" ? 30 : 64.03
   },
   authStyles: {
     backgroundColor: appStyles.white,
@@ -148,6 +182,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
     paddingHorizontal: 40,
     borderColor: appStyles.primary
+  },
+  buttonContainerStyle: {
+    width: 330,
+    marginVertical: 16
   }
 });
 
