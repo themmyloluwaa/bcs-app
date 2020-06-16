@@ -73,7 +73,7 @@ const OnboardingScreen = ({ navigation, route }) => {
             alignItems: "center"
           }}
         >
-          <FlatList
+          <Animated.FlatList
             horizontal
             pagingEnabled
             scrollEnabled
