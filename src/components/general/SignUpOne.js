@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import { View, Animated, Text, StyleSheet } from "react-native";
+import React from "react";
+import { View, Dimensions } from "react-native";
 
-import { Card, Button, Input } from "react-native-elements";
+import { Button, Input } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 import { appStyles } from "../../../utils/appStyles";
+const { height } = Dimensions.get("window");
 
-const SignUpOne = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+const SignUpOne = props => {
+  console.log(props);
   return (
     <View>
       <Input
@@ -18,15 +16,15 @@ const SignUpOne = () => {
           {
             alignItems: "center",
             justifyContent: "center",
-            width: "100%"
+            width: "100%",
+            height: 30,
+            marginVertical: (height * 0.25) / 10
           }
         ]}
         inputContainerStyle={[
           {
             paddingLeft: 10,
             borderWidth: 1,
-            // marginHorizontal: 40,
-            paddingVertical: 3,
             borderColor: appStyles.primary
           },
           appStyles.borderRadius5
@@ -40,15 +38,16 @@ const SignUpOne = () => {
           {
             alignItems: "center",
             justifyContent: "center",
-            width: "100%"
+            width: "100%",
+            height: 30,
+            marginVertical: (height * 0.25) / 10
           }
         ]}
         inputContainerStyle={[
           {
             borderWidth: 1,
-            // marginHorizontal: 40,
             paddingLeft: 10,
-            paddingVertical: 3,
+
             borderColor: appStyles.primary
           },
           appStyles.borderRadius5
@@ -63,14 +62,13 @@ const SignUpOne = () => {
             alignItems: "center",
             justifyContent: "center",
             width: "100%",
-            marginBottom: 25
+            height: 30,
+            marginVertical: (height * 0.25) / 10
           }
         ]}
         inputContainerStyle={[
           {
             borderWidth: 1,
-            // marginHorizontal: 40,
-            paddingVertical: 3,
             paddingLeft: 10,
             borderColor: appStyles.primary
           },
@@ -90,11 +88,9 @@ const SignUpOne = () => {
         title="CONTINUE"
         type="outline"
         containerStyle={[
-          styles.buttonContainerStyle,
           appStyles.borderRadius5,
           {
-            backgroundColor: appStyles.primary,
-            paddingVertical: 5
+            backgroundColor: appStyles.primary
           }
         ]}
         titleStyle={{
@@ -108,7 +104,6 @@ const SignUpOne = () => {
           borderBottomWidth: 0.3,
           borderBottomEndRadius: 0
         }}
-        // disabled={disabled}
         disabledTitleStyle={{
           color: appStyles.white
         }}
@@ -117,5 +112,4 @@ const SignUpOne = () => {
   );
 };
 
-const styles = StyleSheet.create({});
 export default SignUpOne;
