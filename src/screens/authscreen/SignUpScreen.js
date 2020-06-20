@@ -12,9 +12,11 @@ import { Card, Button, Image } from "react-native-elements";
 
 import { appStyles } from "../../../utils/appStyles";
 import SignUpOne from "../../components/general/SignUpOne";
+import SignUpTwo from "../../components/general/SignUpTwo";
 const source = require("../../assets/target_monochromatic.png");
 
 const SignUpScreen = props => {
+  const [cardNumber] = useState(1);
   return (
     <View style={styles.containerStyle}>
       <Image
@@ -37,7 +39,8 @@ const SignUpScreen = props => {
             Create an account to get started with your learning.
           </Text>
         </View>
-        <SignUpOne />
+        {/* <SignUpOne /> */}
+        <SignUpTwo />
       </Card>
     </View>
   );
