@@ -1,75 +1,87 @@
-import React from "react";
-import { View, Animated, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Animated,
+  PanResponder,
+  Dimensions,
+  Text,
+  StyleSheet
+} from "react-native";
 
-const DATA = [
-  {
-    id: 1,
-    text: "Card #1",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg"
-  },
-  {
-    id: 2,
-    text: "Card #2",
-    uri: "http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg"
-  },
-  {
-    id: 3,
-    text: "Card #3",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg"
-  },
-  {
-    id: 4,
-    text: "Card #4",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg"
-  },
-  {
-    id: 5,
-    text: "Card #5",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg"
-  },
-  {
-    id: 6,
-    text: "Card #6",
-    uri: "http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg"
-  },
-  {
-    id: 7,
-    text: "Card #7",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg"
-  },
-  {
-    id: 8,
-    text: "Card #8",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg"
-  }
-];
+import { Card, Button, Image } from "react-native-elements";
 
-const Deck = item => {
-  return <Text>{item.text}</Text>;
-};
+import { appStyles } from "../../../utils/appStyles";
+import SignUpOne from "../../components/general/SignUpOne";
+const source = require("../../assets/target_monochromatic.png");
 
 const SignUpScreen = props => {
   return (
-    <View
-      style={{
-        justifyContent: "flex-start",
-        alignItems: "center",
-        marginTop: 40,
-        flex: 1
-      }}
-    >
-      <Deck />
+    <View style={styles.containerStyle}>
+      <Image
+        source={source}
+        containerStyle={styles.imageContainer}
+        style={{ width: 300, height: 250 }}
+        resizeMode="contain"
+      />
+      <Card containerStyle={[styles.authStyles, appStyles.boxShadow]}>
+        <View
+          style={
+            (styles.titleContainer,
+            {
+              paddingHorizontal: 0
+            })
+          }
+        >
+          <Text style={styles.titleStyle}>Sign Up</Text>
+          <Text style={styles.titleBodyStyle}>
+            Create an account to get started with your learning.
+          </Text>
+        </View>
+        <SignUpOne />
+      </Card>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  ball: {
-    borderRadius: 100 / 2,
-    backgroundColor: "purple",
-    height: 60,
-    width: 60
+  containerStyle: {
+    display: "flex",
+    height: "100%",
+    width: "100%",
+    alignItems: "center",
+    flex: 1,
+    backgroundColor: appStyles.primary
+  },
+  imageContainer: {
+    // backgroundColor: "green",
+    marginVertical: Platform.OS === "android" ? 30 : 30.03
+  },
+  authStyles: {
+    backgroundColor: appStyles.white,
+    width: "100%",
+    height: "100%",
+    borderTopRightRadius: 24,
+    borderTopLeftRadius: 24,
+    display: "flex",
+    alignItems: "center"
+  },
+  titleContainer: {
+    marginHorizontal: 40,
+    paddingTop: 5,
+    paddingHorizontal: 0
+  },
+  titleStyle: {
+    textAlign: "left",
+    lineHeight: 58,
+    fontSize: 24,
+    fontWeight: "600"
+  },
+  titleBodyStyle: {
+    textAlign: "left",
+    color: "rgba(40, 40, 40, 0.7)",
+    fontWeight: "normal",
+    fontSize: 14,
+    paddingBottom: 17
   }
 });
-
 export default SignUpScreen;
