@@ -16,7 +16,9 @@ const SignUpOne = props => {
     password,
     setPassword,
     setNumber,
-    forceSwipe
+    forceSwipe,
+    disabled,
+    setDisabled
   ] = props.data;
   return (
     <View>
@@ -99,7 +101,8 @@ const SignUpOne = props => {
         containerStyle={[
           appStyles.borderRadius5,
           {
-            backgroundColor: appStyles.primary,
+            backgroundColor:
+              disabled === true ? "rgba(73, 2, 34, 0.7);" : appStyles.primary,
             width: width - 50
           }
         ]}
@@ -118,6 +121,7 @@ const SignUpOne = props => {
         disabledTitleStyle={{
           color: appStyles.white
         }}
+        disabled={disabled}
         onPress={() => forceSwipe("left")}
       />
     </View>

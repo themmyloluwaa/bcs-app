@@ -6,7 +6,8 @@ import {
   StyleSheet,
   PanResponder,
   Animated,
-  Dimensions
+  Dimensions,
+  TouchableWithoutFeedback
 } from "react-native";
 
 import { appStyles } from "../../../utils/appStyles";
@@ -40,6 +41,7 @@ const SignUpScreen = ({ navigation }) => {
   const [phone, setPhone] = useState("");
   const [level, setLevel] = useState("");
   const [number, setNumber] = useState(0);
+  const [disabled, setDisabled] = useState(true);
 
   const position = new Animated.ValueXY();
 
@@ -72,7 +74,7 @@ const SignUpScreen = ({ navigation }) => {
 
   const resetPosition = () => {
     Animated.timing(position, {
-      toValue: { x: -10, y: 0 }
+      toValue: { x: 0, y: 0 }
     }).start();
   };
 
@@ -83,7 +85,7 @@ const SignUpScreen = ({ navigation }) => {
       duration: 250
     }).start(() => {
       Animated.timing(position, {
-        toValue: { x: -10, y: 0 },
+        toValue: { x: 0, y: 0 },
         duration: 0
       }).start();
       x === "right" ? setNumber(0) : setNumber(1);
@@ -106,85 +108,113 @@ const SignUpScreen = ({ navigation }) => {
           resizeMode="contain"
         />
       </View>
-      <View style={styles.cardContainer}>
-        <View style={styles.innerCardContainer}>
-          <View style={styles.textContainer}>
-            <Text
-              style={{
-                paddingBottom: (height * 0.25) / 40,
-                textAlign: "left",
-                // lineHeight: 58,
-                fontSize: 24,
-                fontWeight: "600"
-              }}
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: appStyles.white,
+          borderTopRightRadius: 24,
+          borderTopLeftRadius: 24
+        }}
+      >
+        <Animated.View
+          {...panResponder.panHandlers}
+          style={[styles.cardContainer, position.getLayout()]}
+        >
+          <View style={styles.innerCardContainer}>
+            <View style={styles.textContainer}>
+              <Text
+                style={{
+                  paddingBottom: (height * 0.25) / 40,
+                  textAlign: "left",
+                  // lineHeight: 58,
+                  fontSize: 24,
+                  fontWeight: "600"
+                }}
+              >
+                Sign Up
+              </Text>
+              <Text
+                style={{
+                  color: "rgba(40, 40, 40, 0.7)",
+                  fontWeight: "normal",
+                  fontSize: 14
+                }}
+              >
+                {" "}
+                {number === 0
+                  ? "Create an account to get started with your learning."
+                  : "Almost Done."}
+              </Text>
+            </View>
+            <View
+              // {...panResponder.panHandlers}
+              style={[
+                {
+                  width: width - 20,
+                  paddingHorizontal: wTen
+                }
+              ]}
             >
-              Sign Up
-            </Text>
-            <Text
-              style={{
-                color: "rgba(40, 40, 40, 0.7)",
-                fontWeight: "normal",
-                fontSize: 14
-              }}
-            >
-              {" "}
-              {number === 0
-                ? "Create an account to get started with your learning."
-                : "Almost Done."}
-            </Text>
+              {number === 0 ? (
+                <SignUpOne
+                  data={[
+                    name,
+                    setName,
+                    email,
+                    setEmail,
+                    password,
+                    setPassword,
+                    setNumber,
+                    forceSwipe,
+                    disabled,
+                    setDisabled
+                  ]}
+                />
+              ) : (
+                <SignUpTwo
+                  data={[country, setCountry, phone, setPhone, level, setLevel]}
+                />
+              )}
+            </View>
           </View>
-          <Animated.View
-            {...panResponder.panHandlers}
-            style={[
-              position.getLayout(),
-              {
-                width: width - 20,
-                paddingHorizontal: wTen
-              }
-            ]}
-          >
-            {number === 0 ? (
-              <SignUpOne
-                data={[
-                  name,
-                  setName,
-                  email,
-                  setEmail,
-                  password,
-                  setPassword,
-                  setNumber,
-                  forceSwipe
-                ]}
-              />
-            ) : (
-              <SignUpTwo
-                data={[country, setCountry, phone, setPhone, level, setLevel]}
-              />
+          <View style={styles.bottomContainer}>
+            {number === 1 && (
+              <Text
+                style={{
+                  fontSize: 14,
+                  lineHeight: 20,
+                  paddingRight: 20,
+                  color: appStyles.primary,
+                  textAlign: "center",
+                  paddingVertical: 5
+                }}
+                onPress={() => forceSwipe("right")}
+              >
+                Previous
+              </Text>
             )}
-          </Animated.View>
-        </View>
-        <View style={styles.bottomContainer}>
-          <Text
-            style={{
-              fontSize: 14,
-              lineHeight: 20,
-              paddingRight: 20,
-              color: "rgba(53, 53, 53, 0.8)"
-            }}
-          >
-            Have an account?{" "}
             <Text
               style={{
-                color: appStyles.primary,
-                fontSize: 14
+                fontSize: 14,
+                lineHeight: 20,
+                paddingRight: 20,
+                color: "rgba(53, 53, 53, 0.8)"
               }}
-              onPress={() => navigation.navigate("Sign Up")}
             >
-              Sign in
+              Have an account?{" "}
+              <Text
+                style={{
+                  color: appStyles.primary,
+                  fontSize: 14
+                }}
+                onPress={() => navigation.navigate("Sign In")}
+              >
+                Sign in
+              </Text>
             </Text>
-          </Text>
-          {renderSteps(number)}
-        </View>
+            {renderSteps(number)}
+          </View>
+        </Animated.View>
       </View>
     </View>
   );
@@ -202,10 +232,10 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   cardContainer: {
-    height: height - height / 1.5,
-    backgroundColor: "#fff",
+    height: "100%",
+    backgroundColor: "transparent",
     alignItems: "center",
-
+    position: "absolute",
     flex: 1,
     borderTopRightRadius: 24,
     borderTopLeftRadius: 24
@@ -217,7 +247,8 @@ const styles = StyleSheet.create({
     width: width - 20
   },
   textContainer: {
-    marginVertical: wTen
+    marginVertical: wTen,
+    paddingLeft: 10
   },
   bottomContainer: {
     justifyContent: "flex-end",

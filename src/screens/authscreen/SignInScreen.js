@@ -38,6 +38,7 @@ const SignInScreen = ({ navigation }) => {
             rightIconContainerStyle={{
               left: 22
             }}
+            keyboardType="email-address"
             placeholderTextColor={appStyles.primary}
             placeholder="Email address"
             rightIcon={{
@@ -76,9 +77,8 @@ const SignInScreen = ({ navigation }) => {
             styles.buttonContainerStyle,
             appStyles.borderRadius5,
             {
-              backgroundColor: disabled
-                ? "rgba(73, 2, 34, 0.7);"
-                : appStyles.primary
+              backgroundColor:
+                disabled === true ? "rgba(73, 2, 34, 0.7);" : appStyles.primary
             }
           ]}
           titleStyle={{
