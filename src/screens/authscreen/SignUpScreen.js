@@ -88,8 +88,6 @@ const SignUpScreen = ({ navigation }) => {
       }).start();
       x === "right" ? setNumber(0) : setNumber(1);
     });
-
-    console.log(direction);
   };
   useEffect(() => {
     resetPosition();
