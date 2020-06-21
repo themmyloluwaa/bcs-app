@@ -5,10 +5,19 @@ import { Button, Input } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 import { appStyles } from "../../../utils/appStyles";
-const { height } = Dimensions.get("window");
+const { height, width } = Dimensions.get("window");
 
 const SignUpOne = props => {
-  console.log(props);
+  const [
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    setNumber,
+    forceSwipe
+  ] = props.data;
   return (
     <View>
       <Input
@@ -90,7 +99,8 @@ const SignUpOne = props => {
         containerStyle={[
           appStyles.borderRadius5,
           {
-            backgroundColor: appStyles.primary
+            backgroundColor: appStyles.primary,
+            width: width - 50
           }
         ]}
         titleStyle={{
@@ -100,6 +110,7 @@ const SignUpOne = props => {
           borderColor: appStyles.white,
           height: 48,
           color: appStyles.white,
+          paddingHorizontal: (width * 0.25) / 10,
 
           borderBottomWidth: 0.3,
           borderBottomEndRadius: 0
@@ -107,6 +118,7 @@ const SignUpOne = props => {
         disabledTitleStyle={{
           color: appStyles.white
         }}
+        onPress={() => forceSwipe("left")}
       />
     </View>
   );

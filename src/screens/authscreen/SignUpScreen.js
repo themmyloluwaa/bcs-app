@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import { View, Text, StyleSheet, Animated, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  PanResponder,
+  Animated,
+  Dimensions
+} from "react-native";
 
 import { appStyles } from "../../../utils/appStyles";
 import { Image } from "react-native-elements";
@@ -10,20 +17,14 @@ const { width, height } = Dimensions.get("window");
 import SignUpOne from "../../components/general/SignUpOne";
 import SignUpTwo from "../../components/general/SignUpTwo";
 
-const scrollX = new Animated.Value(0);
-const stepPosition = new Animated.divide(scrollX, width);
+const SWIPE_THRESHOLD = 0.25 * width;
 
-const renderSteps = () => (
+const renderSteps = number => (
   <View style={styles.stepContainer}>
     {[1, 2].map((item, index) => {
-      const opacity = stepPosition.interpolate({
-        inputRange: [index - 1, index, index + 1],
-        outputRange: [0.4, 1, 0.4],
-        extrapolate: "clamp"
-      });
       return (
         <Animated.View
-          style={[styles.stepStyle, { opacity }]}
+          style={[styles.stepStyle, { opacity: index === number ? 1 : 0.4 }]}
           key={`slider-${index}`}
         ></Animated.View>
       );
@@ -39,6 +40,61 @@ const SignUpScreen = ({ navigation }) => {
   const [phone, setPhone] = useState("");
   const [level, setLevel] = useState("");
   const [number, setNumber] = useState(0);
+
+  const position = new Animated.ValueXY();
+
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderMove: (e, g) => {
+      position.setValue({
+        x: g.dx,
+        y: 0
+      });
+    },
+    onPanResponderRelease: (e, g) => {
+      if (g.dx > SWIPE_THRESHOLD) {
+        if (number === 0) {
+          resetPosition();
+        } else {
+          forceSwipe("right");
+        }
+      } else if (g.dx < -SWIPE_THRESHOLD) {
+        if (number === 1) {
+          resetPosition();
+        } else {
+          forceSwipe("left");
+        }
+      } else {
+        resetPosition();
+      }
+    }
+  });
+
+  const resetPosition = () => {
+    Animated.timing(position, {
+      toValue: { x: -10, y: 0 }
+    }).start();
+  };
+
+  const forceSwipe = x => {
+    const direction = x === "right" ? width : -width;
+    Animated.timing(position, {
+      toValue: { x: direction, y: 0 },
+      duration: 250
+    }).start(() => {
+      Animated.timing(position, {
+        toValue: { x: -10, y: 0 },
+        duration: 0
+      }).start();
+      x === "right" ? setNumber(0) : setNumber(1);
+    });
+
+    console.log(direction);
+  };
+  useEffect(() => {
+    resetPosition();
+  }, []);
+
   return (
     <View style={styles.parentContainer}>
       <View style={styles.containerStyle}>
@@ -74,13 +130,40 @@ const SignUpScreen = ({ navigation }) => {
               }}
             >
               {" "}
-              Create an account to get started with your learning.
+              {number === 0
+                ? "Create an account to get started with your learning."
+                : "Almost Done."}
             </Text>
           </View>
-          {/* <SignUpOne data={[name, setName, email, setEmail, password, setPassword]}/> */}
-          <SignUpTwo
-            data={[country, setCountry, phone, setPhone, level, setLevel]}
-          />
+          <Animated.View
+            {...panResponder.panHandlers}
+            style={[
+              position.getLayout(),
+              {
+                width: width - 20,
+                paddingHorizontal: wTen
+              }
+            ]}
+          >
+            {number === 0 ? (
+              <SignUpOne
+                data={[
+                  name,
+                  setName,
+                  email,
+                  setEmail,
+                  password,
+                  setPassword,
+                  setNumber,
+                  forceSwipe
+                ]}
+              />
+            ) : (
+              <SignUpTwo
+                data={[country, setCountry, phone, setPhone, level, setLevel]}
+              />
+            )}
+          </Animated.View>
         </View>
         <View style={styles.bottomContainer}>
           <Text
@@ -102,7 +185,7 @@ const SignUpScreen = ({ navigation }) => {
               Sign in
             </Text>
           </Text>
-          {renderSteps()}
+          {renderSteps(number)}
         </View>
       </View>
     </View>
@@ -153,7 +236,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 4,
     marginHorizontal: wTen,
-    backgroundColor: "#000"
+    backgroundColor: appStyles.primary
   }
 });
 

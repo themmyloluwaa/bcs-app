@@ -9,7 +9,7 @@ const { height } = Dimensions.get("window");
 import RNPickerSelect from "react-native-picker-select";
 
 const SignUpTwo = props => {
-  console.log(props);
+  const [country, setCountry, phone, setPhone, level, setLevel] = props.data;
   const placeholderOne = {
     label: "Country",
     value: null,
@@ -47,8 +47,10 @@ const SignUpTwo = props => {
 
           iconContainer: {
             top: 10,
-            right: 38
+            right: 38,
+            height: 0
           },
+
           placeholder: {
             color: appStyles.primary
           }
@@ -79,7 +81,7 @@ const SignUpTwo = props => {
           appStyles.borderRadius5
         ]}
         keyboardType="numeric"
-        placeholder="Phone (e.g +23470)"
+        placeholder="Phone (e.g 070123456789)"
         placeholderTextColor={appStyles.primary}
       />
 
