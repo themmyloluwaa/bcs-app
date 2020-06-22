@@ -12,7 +12,7 @@ const AuthStackNavigator = createStackNavigator();
 const authNavigation = () => (
   <AuthStackNavigator.Navigator initialRouteName="Onboarding">
     <AuthStackNavigator.Screen name="Onboarding" component={OnboardingScreen} />
-    <AuthStackNavigator.Screen name="Welcome" component={WelcomeScreen} />
+    {/* <AuthStackNavigator.Screen name="Welcome" component={WelcomeScreen} /> */}
     <AuthStackNavigator.Screen name="Sign In" component={SignInScreen} />
     <AuthStackNavigator.Screen name="Sign Up" component={SignUpScreen} />
     <AuthStackNavigator.Screen

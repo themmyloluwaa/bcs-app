@@ -12,7 +12,7 @@ const AppNavigator = createStackNavigator();
 
 const AllNavigator = () => (
   <AppNavigator.Navigator
-    initialRouteName="Auth"
+    initialRouteName="App"
     screenOptions={{
       header: () => null
     }}

@@ -1,5 +1,7 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 const Layout = ({ children, ...props }) => {
   return (
@@ -23,8 +25,8 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     // alignItems: "center"
     // paddingVertical: 50,
-    width: 500,
-    maxWidth: "100%",
+    width: "100%",
+    maxWidth: width,
     height: "100%"
   }
 });
