@@ -6,8 +6,7 @@ import {
   StyleSheet,
   PanResponder,
   Animated,
-  Dimensions,
-  TouchableWithoutFeedback
+  Dimensions
 } from "react-native";
 
 import { appStyles } from "../../../utils/appStyles";

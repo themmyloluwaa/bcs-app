@@ -31,8 +31,6 @@ const DATA = [
 const source = require("../../assets/target_monochromatic.png");
 
 const Item = ({ title, navigation }, i) => (
-  // <View style={styles.item}>
-  //   <Text style={styles.title}>{title}</Text>
   <ListItem
     title={title}
     subtitle="16 topics * 5 resources"
@@ -80,7 +78,6 @@ const Item = ({ title, navigation }, i) => (
       fontSize: 20
     }}
   />
-  // </View>
 );
 
 const ListHeaderComponent = () => (
@@ -137,40 +134,22 @@ const LearningScreen = props => {
         stickySectionHeadersEnabled={false}
       />
     </SafeAreaView>
-
-    // <View >
-
-    //   <FlatList
-    //     keyExtractor={keyExtractor}
-    //     data={list}
-    //     renderItem={renderItem}
-    //   />
-    // </Vie>
-    // </Layout>
   );
 };
 
 const styles = StyleSheet.create({
   welcomeContainer: {
-    // justifyContent: "center",
-    // alignItems: "flex-start",
-    // flex: 1,
     paddingTop: 80,
-    // backgroundColor: "#E5E5E5",
-    // paddingHorizontal: 16,
-    // color: "rgba(40, 40, 40, 0.7)"
+
     flex: 1,
-    // marginTop: Constants.statusBarHeight,
     marginHorizontal: 16
   },
   textContainer: {
     marginBottom: 32,
-    // backgroundColor: "green",
     paddingVertical: 10,
     width: "100%"
   },
   item: {
-    // backgroundColor: "#f9c2ff",
     padding: 20,
     marginVertical: 8
   },
