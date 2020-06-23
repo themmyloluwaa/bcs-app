@@ -4,6 +4,7 @@ import LearningScreen from "../screens/appscreen/LearningScreen";
 
 import ChatScreen from "../screens/messagescreen/ChatScreen";
 import RequestScreen from "../screens/messagescreen/RequestScreen";
+import CourseScreen from "../screens/CourseScreen";
 
 const LearningStackNavigator = createStackNavigator();
 const ResourceStackNavigator = createStackNavigator();
@@ -41,7 +42,7 @@ export const learningStackNavigator = () => (
       name="Resource Home"
       component={LearningScreen}
     />
-    <LearningStackNavigator.Screen name="Course" component={LearningScreen} />
+    <LearningStackNavigator.Screen name="Course" component={CourseScreen} />
     <LearningStackNavigator.Screen name="Content" component={LearningScreen} />
     <LearningStackNavigator.Screen
       name="Learning Discussion"

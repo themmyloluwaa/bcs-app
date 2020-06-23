@@ -33,6 +33,11 @@ const source = require("../../assets/target_monochromatic.png");
 const Item = ({ title, navigation }, i) => (
   <ListItem
     title={title}
+    onPress={() =>
+      navigation.navigate("Course", {
+        id: 1
+      })
+    }
     subtitle="16 topics * 5 resources"
     rightIcon={() => (
       <Icon
@@ -42,6 +47,11 @@ const Item = ({ title, navigation }, i) => (
         style={{
           opacity: 0.8
         }}
+        onPress={() =>
+          navigation.navigate("Course", {
+            id: 1
+          })
+        }
       />
     )}
     containerStyle={{
