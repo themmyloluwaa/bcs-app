@@ -2,7 +2,6 @@ import React from "react";
 import { Text, FlatList } from "react-native";
 
 import { ListItem } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome5";
 
 const QuizComponent = props => {
   return (
@@ -12,18 +11,6 @@ const QuizComponent = props => {
         return (
           <ListItem
             title={item.title}
-            // rightIcon={() => (
-            //   <Icon
-            //     name="comment"
-            //     size={16}
-            //     style={{
-            //       opacity: 0.8,
-            //       color: "#FFA022",
-            //       right: 30
-            //     }}
-            //   />
-            // )}
-
             rightTitle="10/10"
             rightTitleStyle={{
               color: "#FFA022",

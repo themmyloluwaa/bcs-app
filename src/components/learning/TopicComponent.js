@@ -21,6 +21,7 @@ const TopicComponent = props => {
                   color: "#FFA022",
                   right: 30
                 }}
+                onPress={() => props.navigation.navigate("Content")}
               />
             )}
             bottomDivider

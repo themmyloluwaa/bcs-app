@@ -6,6 +6,8 @@ import ChatScreen from "../screens/messagescreen/ChatScreen";
 import RequestScreen from "../screens/messagescreen/RequestScreen";
 import CourseScreen from "../screens/CourseScreen";
 
+import ContentScreen from "../screens/learningscreen/ContentScreen";
+
 const LearningStackNavigator = createStackNavigator();
 const ResourceStackNavigator = createStackNavigator();
 const DiscussionNavigator = createStackNavigator();
@@ -43,7 +45,7 @@ export const learningStackNavigator = () => (
       component={LearningScreen}
     />
     <LearningStackNavigator.Screen name="Course" component={CourseScreen} />
-    <LearningStackNavigator.Screen name="Content" component={LearningScreen} />
+    <LearningStackNavigator.Screen name="Content" component={ContentScreen} />
     <LearningStackNavigator.Screen
       name="Learning Discussion"
       children={topicDicussionNavigator}

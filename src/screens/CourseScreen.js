@@ -6,14 +6,13 @@ import {
   Dimensions,
   ImageBackground,
   StatusBar,
-  FlatList,
   SafeAreaView
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-import { ButtonGroup, ListItem } from "react-native-elements";
+import { ButtonGroup } from "react-native-elements";
 import TopicComponent from "../components/learning/TopicComponent";
 import DiscussionComponent from "../components/learning/DiscussionComponent";
 import QuizComponent from "../components/learning/QuizComponent";
@@ -58,15 +57,15 @@ const DATA = [
   }
 ];
 
-const componentToRender = i => {
+const componentToRender = (i, navigation) => {
   return (
     <SafeAreaView style={styles.SafeAreaViewContainer}>
       {i === 0 ? (
-        <TopicComponent DATA={DATA} />
+        <TopicComponent DATA={DATA} navigation={navigation} />
       ) : i === 1 ? (
-        <DiscussionComponent DATA={DATA} />
+        <DiscussionComponent DATA={DATA} navigation={navigation} />
       ) : (
-        <QuizComponent DATA={DATA} />
+        <QuizComponent DATA={DATA} navigation={navigation} />
       )}
     </SafeAreaView>
   );
@@ -153,7 +152,7 @@ const CourseScreen = ({ navigation, route }) => {
           fontSize: 14
         }}
       />
-      {componentToRender(index)}
+      {componentToRender(index, navigation)}
     </View>
   );
 };
