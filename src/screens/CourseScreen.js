@@ -1,20 +1,97 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   Dimensions,
   ImageBackground,
-  StatusBar
+  StatusBar,
+  FlatList,
+  SafeAreaView
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 import Icon from "react-native-vector-icons/FontAwesome5";
 
+import { ButtonGroup, ListItem } from "react-native-elements";
+import TopicComponent from "../components/learning/TopicComponent";
+import DiscussionComponent from "../components/learning/DiscussionComponent";
+import QuizComponent from "../components/learning/QuizComponent";
 const source = require("../assets/bg-img.png");
 
+const DATA = [
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    title: "First Item"
+  },
+  {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    title: "Second Item"
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Third Item"
+  },
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28baq",
+    title: "Fourth Item"
+  },
+  {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f631",
+    title: "Fifth Item"
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d723i",
+    title: "Sixth Item"
+  },
+  {
+    id: "ad7acbea-c1b1-46c2-aed5-3ad53abb28baq",
+    title: "Seventh Item"
+  },
+  {
+    id: "5ac68afc-c605-48d3-a4f8-fbd91aa97f631",
+    title: "Eight Item"
+  },
+  {
+    id: "98694a0f-3da1-471f-bd96-145571e29d723i",
+    title: "Ninth Item"
+  }
+];
+
+const componentToRender = i => {
+  return (
+    <SafeAreaView style={styles.SafeAreaViewContainer}>
+      {i === 0 ? (
+        <TopicComponent DATA={DATA} />
+      ) : i === 1 ? (
+        <DiscussionComponent DATA={DATA} />
+      ) : (
+        <QuizComponent DATA={DATA} />
+      )}
+    </SafeAreaView>
+  );
+};
+
+const component1 = () => (
+  <Text
+    style={{
+      color: "#000"
+    }}
+  >
+    TOPICS
+  </Text>
+);
+
+const component2 = () => <Text>DISCUSSIONS</Text>;
+const component3 = () => <Text>QUIZZES</Text>;
+
 const CourseScreen = ({ navigation, route }) => {
-  console.log(route);
+  const buttons = [
+    { element: component1 },
+    { element: component2 },
+    { element: component3 }
+  ];
+  const [index, setIndex] = useState(0);
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#490222" barStyle={"light-content"} />
@@ -53,6 +130,30 @@ const CourseScreen = ({ navigation, route }) => {
           </Text>
         </View>
       </ImageBackground>
+      <ButtonGroup
+        onPress={a => {
+          console.log(index);
+
+          setIndex(a);
+        }}
+        selectedIndex={index}
+        buttons={buttons}
+        containerStyle={{
+          height: 48,
+          width: "100%",
+          marginTop: -10,
+          backgroundColor: "#FAFEFE"
+        }}
+        selectedButtonStyle={{
+          backgroundColor: "transparent",
+          borderBottomWidth: 1
+        }}
+        textStyle={{
+          fontWeight: "bold",
+          fontSize: 14
+        }}
+      />
+      {componentToRender(index)}
     </View>
   );
 };
@@ -82,6 +183,18 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     paddingHorizontal: 20,
     paddingTop: 40
+  },
+  item: {
+    backgroundColor: "#f9c2ff",
+    padding: 20,
+    marginVertical: 8
+  },
+  title: {
+    fontSize: 32
+  },
+  SafeAreaViewContainer: {
+    flex: 1,
+    width: "100%"
   }
 });
 
