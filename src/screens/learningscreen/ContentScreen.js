@@ -1,6 +1,17 @@
 import React from "react";
-import { Dimensions, ScrollView } from "react-native";
+import {
+  Dimensions,
+  ScrollView,
+  StatusBar,
+  Platform,
+  View,
+  Text
+} from "react-native";
+import { appStyles } from "../../../utils/appStyles";
 import HTML from "react-native-render-html";
+
+import Icon from "react-native-vector-icons/FontAwesome5";
+
 const htmlContent = `
 <div style="font-size: 2em;">
 <p>The new owner of a bookshop is re-organising the current systems. This involves:</p>
@@ -23,14 +34,55 @@ const htmlContent = `
 </div>
 `;
 
-const ContentScreen = () => {
+const { height, width } = Dimensions.get("window");
+const ContentScreen = ({ navigation }) => {
+  console.log(width);
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <HTML
-        html={htmlContent}
-        imagesMaxWidth={Dimensions.get("window").width}
-      />
-    </ScrollView>
+    <>
+      <StatusBar backgroundColor="#3E011C" barStyle={"light-content"} />
+
+      <View
+        style={{
+          backgroundColor: appStyles.primary,
+          height: width * 0.25,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          paddingHorizontal: 16,
+          paddingTop: Platform.OS === "ios" ? 15 : null
+        }}
+      >
+        <Icon
+          name="arrow-left"
+          size={20}
+          style={{
+            opacity: 0.8,
+            color: "#fff"
+          }}
+          onPress={() => navigation.goBack()}
+        />
+        <Text
+          style={{
+            color: "#fff",
+            fontSize: 20
+          }}
+        >
+          Selecting Colors
+        </Text>
+        <Icon
+          name="comment"
+          size={20}
+          style={{
+            opacity: 0.8,
+            color: "#fff"
+          }}
+          onPress={() => navigation.navigate("Learning Discussion")}
+        />
+      </View>
+      <ScrollView style={{ flex: 1, height: height - 66 }}>
+        <HTML html={htmlContent} imagesMaxWidth={width} />
+      </ScrollView>
+    </>
   );
 };
 

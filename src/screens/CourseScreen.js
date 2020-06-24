@@ -131,8 +131,6 @@ const CourseScreen = ({ navigation, route }) => {
       </ImageBackground>
       <ButtonGroup
         onPress={a => {
-          console.log(index);
-
           setIndex(a);
         }}
         selectedIndex={index}

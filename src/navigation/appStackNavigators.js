@@ -18,8 +18,8 @@ const RequestNavigator = createStackNavigator();
 
 const topicDicussionNavigator = () => (
   <DiscussionNavigator.Navigator>
-    <DiscussionNavigator.Screen name="Topic Forum" />
-    <DiscussionNavigator.Screen name="Topic Thread" />
+    <DiscussionNavigator.Screen name="Topic Forum" component={ChatScreen} />
+    <DiscussionNavigator.Screen name="Topic Thread" component={ChatScreen} />
   </DiscussionNavigator.Navigator>
 );
 
