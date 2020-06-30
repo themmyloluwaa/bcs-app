@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { appStyles } from "../../../utils/appStyles";
 import HTML from "react-native-render-html";
-
+import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 const htmlContent = `
@@ -36,7 +36,6 @@ const htmlContent = `
 
 const { height, width } = Dimensions.get("window");
 const ContentScreen = ({ navigation }) => {
-  console.log(width);
   return (
     <>
       <StatusBar backgroundColor="#3E011C" barStyle={"light-content"} />
@@ -81,6 +80,45 @@ const ContentScreen = ({ navigation }) => {
       </View>
       <ScrollView style={{ flex: 1, height: height - 66 }}>
         <HTML html={htmlContent} imagesMaxWidth={width} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginVertical: 20,
+            alignItems: "baseline",
+
+            height: 40,
+            backgroundColor: "transparent"
+          }}
+        >
+          <Button
+            containerStyle={{
+              // width: 168,
+              flex: 1,
+              paddingHorizontal: 20
+            }}
+            buttonStyle={{
+              // height: "100%",
+              borderColor: appStyles.primary
+            }}
+            type="outline"
+            title="NEXT TOPIC"
+            titleStyle={{
+              color: appStyles.primary
+            }}
+          />
+          <Button
+            containerStyle={{
+              // width: 168,
+              paddingHorizontal: 10,
+              flex: 1
+            }}
+            buttonStyle={{
+              backgroundColor: appStyles.primary
+            }}
+            title="TAKE QUIZ"
+          />
+        </View>
       </ScrollView>
     </>
   );
