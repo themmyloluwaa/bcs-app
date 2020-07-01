@@ -6,6 +6,7 @@ import ChatScreen from "../screens/messagescreen/ChatScreen";
 import RequestScreen from "../screens/messagescreen/RequestScreen";
 import CourseScreen from "../screens/CourseScreen";
 import DiscussionScreen from "../screens/DiscussionScreen";
+import DiscussionThreadScreen from "../screens/DiscussionThreadScreen";
 // // import DiscussionScreenThread from "../screens/DiscussionScreenThread";
 import ContentScreen from "../screens/learningscreen/ContentScreen";
 
@@ -25,7 +26,7 @@ const topicDicussionNavigator = () => (
     />
     <DiscussionNavigator.Screen
       name="Topic Thread"
-      component={DiscussionScreen}
+      component={DiscussionThreadScreen}
     />
   </DiscussionNavigator.Navigator>
 );

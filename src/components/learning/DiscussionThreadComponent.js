@@ -6,7 +6,33 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 const source = require("../../assets/target_monochromatic.png");
 const { height, width } = Dimensions.get("window");
 
-const DiscussionThreadComponent = ({ navigation }) => {
+const renderReplies = (show, i) => {
+  if (show === true || i === 0) {
+    return (
+      <View
+        style={{
+          paddingHorizontal: 32,
+          flexDirection: "row",
+          alignItems: "center"
+        }}
+      >
+        <Icon name="reply" color="#000" size={14} />
+        <Text
+          style={{
+            fontSize: 16,
+            paddingLeft: 16
+          }}
+        >
+          5 replies
+        </Text>
+      </View>
+    );
+  }
+  return null;
+};
+
+const DiscussionThreadComponent = ({ navigation, config, ...props }) => {
+  const [item, index] = props.item;
   return (
     <TouchableWithoutFeedback
       onPress={() => navigation.navigate("Topic Thread")}
@@ -14,10 +40,10 @@ const DiscussionThreadComponent = ({ navigation }) => {
       <Card
         containerStyle={{
           backgroundColor: "#fff",
-          maxHeight: 300,
+          maxHeight: config.height,
           paddingHorizontal: 0,
           margin: 0,
-          marginBottom: 5
+          marginBottom: config.mb
         }}
       >
         <View
@@ -79,26 +105,10 @@ const DiscussionThreadComponent = ({ navigation }) => {
             marginVertical: 10,
             backgroundColor: "#E1E1E1",
             width: width,
-            height: 2
+            height: 1
           }}
         />
-        <View
-          style={{
-            paddingHorizontal: 32,
-            flexDirection: "row",
-            alignItems: "center"
-          }}
-        >
-          <Icon name="reply" color="#000" size={14} />
-          <Text
-            style={{
-              fontSize: 16,
-              paddingLeft: 16
-            }}
-          >
-            5 replies
-          </Text>
-        </View>
+        {renderReplies(config.show, index)}
       </Card>
     </TouchableWithoutFeedback>
   );
