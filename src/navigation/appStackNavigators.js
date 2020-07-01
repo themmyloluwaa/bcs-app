@@ -5,7 +5,8 @@ import LearningScreen from "../screens/appscreen/LearningScreen";
 import ChatScreen from "../screens/messagescreen/ChatScreen";
 import RequestScreen from "../screens/messagescreen/RequestScreen";
 import CourseScreen from "../screens/CourseScreen";
-
+import DiscussionScreen from "../screens/DiscussionScreen";
+// // import DiscussionScreenThread from "../screens/DiscussionScreenThread";
 import ContentScreen from "../screens/learningscreen/ContentScreen";
 
 const LearningStackNavigator = createStackNavigator();
@@ -18,8 +19,14 @@ const RequestNavigator = createStackNavigator();
 
 const topicDicussionNavigator = () => (
   <DiscussionNavigator.Navigator>
-    <DiscussionNavigator.Screen name="Topic Forum" component={ChatScreen} />
-    <DiscussionNavigator.Screen name="Topic Thread" component={ChatScreen} />
+    <DiscussionNavigator.Screen
+      name="Topic Forum"
+      component={DiscussionScreen}
+    />
+    <DiscussionNavigator.Screen
+      name="Topic Thread"
+      component={DiscussionScreen}
+    />
   </DiscussionNavigator.Navigator>
 );
 

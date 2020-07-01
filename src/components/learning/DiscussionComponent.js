@@ -12,6 +12,7 @@ const DiscussionComponent = props => {
         return (
           <ListItem
             title={item.title}
+            onPress={() => props.navigation.navigate("Learning Discussion")}
             rightIcon={() => (
               <Icon
                 name="comment"
@@ -21,6 +22,7 @@ const DiscussionComponent = props => {
                   color: "#FFA022",
                   right: 30
                 }}
+                onPress={() => props.navigation.navigate("Learning Discussion")}
               />
             )}
             bottomDivider
