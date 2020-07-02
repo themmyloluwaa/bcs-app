@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Dimensions,
-  TouchableWithoutFeedbackComponent
-} from "react-native";
+import { View, Text, Dimensions, TouchableWithoutFeedback } from "react-native";
 import { appStyles } from "../../utils/appStyles";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
@@ -54,31 +49,32 @@ const QuizScreen = ({ navigation }) => {
 
           height: height - width
         }}
-        wrapperStyle={{}}
       >
         <CustomCheckItem />
         <CustomCheckItem />
         <CustomCheckItem />
       </Card>
-      {/* <TouchableWithoutFeedbackComponent> */}
-      <View
-        style={{
-          backgroundColor: "#fff",
-          flex: 1,
-          justifyContent: "flex-end",
-          alignItems: "center",
-          flexDirection: "row",
-          paddingHorizontal: 40
-        }}
+      <TouchableWithoutFeedback
+        onPress={() => navigation.navigate("Quiz Final")}
       >
-        <Text
-          style={{ color: appStyles.primary, marginRight: 14, fontSize: 16 }}
+        <View
+          style={{
+            backgroundColor: "#fff",
+            flex: 1,
+            justifyContent: "flex-end",
+            alignItems: "center",
+            flexDirection: "row",
+            paddingHorizontal: 40
+          }}
         >
-          NEXT
-        </Text>
-        <Icon name="caret-right" color={appStyles.primary} size={20} />
-      </View>
-      {/* </TouchableWithoutFeedbackComponent> */}
+          <Text
+            style={{ color: appStyles.primary, marginRight: 14, fontSize: 16 }}
+          >
+            NEXT
+          </Text>
+          <Icon name="caret-right" color={appStyles.primary} size={20} />
+        </View>
+      </TouchableWithoutFeedback>
     </>
   );
 };

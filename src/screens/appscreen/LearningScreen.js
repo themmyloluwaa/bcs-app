@@ -4,7 +4,8 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
-  SectionList
+  SectionList,
+  ActivityIndicator
 } from "react-native";
 import { Divider, ListItem } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -81,7 +82,8 @@ const Item = ({ title, navigation }, i) => (
       },
       avatarStyle: {
         borderRadius: 0
-      }
+      },
+      renderPlaceholderContent: () => <ActivityIndicator />
     }}
     titleStyle={{
       paddingBottom: 4,
