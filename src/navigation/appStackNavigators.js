@@ -9,6 +9,7 @@ import DiscussionScreen from "../screens/DiscussionScreen";
 import DiscussionThreadScreen from "../screens/DiscussionThreadScreen";
 // // import DiscussionScreenThread from "../screens/DiscussionScreenThread";
 import ContentScreen from "../screens/learningscreen/ContentScreen";
+import QuizScreen from "../screens/QuizScreen";
 
 const LearningStackNavigator = createStackNavigator();
 const ResourceStackNavigator = createStackNavigator();
@@ -39,10 +40,10 @@ const pastQuestionDicussionNavigator = () => (
 );
 
 const quizNavigator = () => (
-  <QuizNavigator.Navigator>
-    <QuizNavigator.Screen name="Quiz Question" />
-    <QuizNavigator.Screen name="Quiz Answer" />
-    <QuizNavigator.Screen name="Quiz Final" />
+  <QuizNavigator.Navigator initialRouteName="Quiz Question">
+    <QuizNavigator.Screen name="Quiz Question" component={QuizScreen} />
+    <QuizNavigator.Screen name="Quiz Answer" component={QuizScreen} />
+    <QuizNavigator.Screen name="Quiz Final" component={QuizScreen} />
   </QuizNavigator.Navigator>
 );
 

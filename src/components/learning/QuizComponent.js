@@ -17,6 +17,9 @@ const QuizComponent = props => {
               fontSize: 14,
               right: 30
             }}
+            onPress={() => {
+              props.navigation.navigate("Quiz");
+            }}
             bottomDivider
             containerStyle={{
               height: 70,
@@ -37,6 +40,9 @@ const QuizComponent = props => {
             fontWeight: "600",
             padding: 10,
             color: "rgba(40, 40, 40, 0.5)"
+          }}
+          onPress={() => {
+            props.navigation.navigate("Quiz");
           }}
         >
           Quizzes on this course
