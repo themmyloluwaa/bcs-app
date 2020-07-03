@@ -72,9 +72,8 @@ const sports = [
   }
 ];
 
-const ResourceScreen = props => {
+const ResourceScreen = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState(false);
-  console.log(props);
 
   const placeholderOne = {
     label: "Select a year",
@@ -220,6 +219,10 @@ const ResourceScreen = props => {
               color: "#490222",
               marginLeft: 10,
               fontWeight: "bold"
+            }}
+            onPress={() => {
+              setIsVisible(false);
+              navigation.navigate("Resource Questions");
             }}
           />
         </View>
