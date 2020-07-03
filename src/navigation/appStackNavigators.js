@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import LearningScreen from "../screens/appscreen/LearningScreen";
+import ResourceScreen from "../screens/appscreen/ResourceScreen";
 
 import ChatScreen from "../screens/messagescreen/ChatScreen";
 import RequestScreen from "../screens/messagescreen/RequestScreen";
@@ -68,15 +69,15 @@ export const resourceStackNavigator = () => (
   <ResourceStackNavigator.Navigator>
     <ResourceStackNavigator.Screen
       name="Resource Home"
-      component={LearningScreen}
+      component={ResourceScreen}
     />
     <ResourceStackNavigator.Screen
       name="Resource Questions"
-      component={LearningScreen}
+      component={ResourceScreen}
     />
     <ResourceStackNavigator.Screen
       name="Resource Answers"
-      component={LearningScreen}
+      component={ResourceScreen}
     />
     <ResourceStackNavigator.Screen
       name="Resource Discussions"
