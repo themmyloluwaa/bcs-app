@@ -14,6 +14,7 @@ const HeaderComponent = props => {
           height: width * 0.25,
           flexDirection: "row",
           alignItems: "center",
+          justifyContent: "space-around",
           paddingHorizontal: 16,
           paddingTop: Platform.OS === "ios" ? 15 : null
         }}
@@ -37,6 +38,17 @@ const HeaderComponent = props => {
         >
           {props.text || "Text goes here"}
         </Text>
+        {props.show === true && (
+          <Icon
+            name="comment"
+            size={20}
+            style={{
+              opacity: 0.8,
+              color: "#fff"
+            }}
+            onPress={() => props.navigation.navigate(props.route)}
+          />
+        )}
       </View>
     </>
   );

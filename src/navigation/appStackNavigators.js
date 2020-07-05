@@ -12,6 +12,8 @@ import DiscussionThreadScreen from "../screens/DiscussionThreadScreen";
 import ContentScreen from "../screens/learningscreen/ContentScreen";
 import QuizScreen from "../screens/QuizScreen";
 import QuizResultScreen from "../screens/QuizResultScreen";
+import PastQuestionQuestion from "../screens/PastQuestionQuestion";
+import PastQuestionAnswer from "../screens/PastQuestionAnswer";
 
 const LearningStackNavigator = createStackNavigator();
 const ResourceStackNavigator = createStackNavigator();
@@ -73,11 +75,11 @@ export const resourceStackNavigator = () => (
     />
     <ResourceStackNavigator.Screen
       name="Resource Questions"
-      component={ResourceScreen}
+      component={PastQuestionQuestion}
     />
     <ResourceStackNavigator.Screen
       name="Resource Answers"
-      component={ResourceScreen}
+      component={PastQuestionAnswer}
     />
     <ResourceStackNavigator.Screen
       name="Resource Discussions"
