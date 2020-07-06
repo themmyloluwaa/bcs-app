@@ -46,7 +46,7 @@ const DATA = [
 
 const { width } = Dimensions.get("window");
 
-const PastQuestionDiscussionThread = ({ navigation }) => {
+const PastQuestionDiscussionThreadScreen = ({ navigation }) => {
   return (
     <>
       <StatusBar backgroundColor="#3E011C" barStyle={"light-content"} />
@@ -104,4 +104,4 @@ const PastQuestionDiscussionThread = ({ navigation }) => {
   );
 };
 
-export default PastQuestionDiscussionThread;
+export default PastQuestionDiscussionThreadScreen;
