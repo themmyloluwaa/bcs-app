@@ -84,6 +84,8 @@ const DiscussionScreen = ({ navigation }) => {
             renderItem={({ item, index }) => (
               <DiscussionThreadComponent
                 navigation={navigation}
+                route="Topic Thread"
+                isRoutable={true}
                 item={[item, index]}
                 config={{
                   mb: 5,

@@ -31,11 +31,17 @@ const renderReplies = (show, i) => {
   return null;
 };
 
-const DiscussionThreadComponent = ({ navigation, config, ...props }) => {
+const DiscussionThreadComponent = ({
+  navigation,
+  route,
+  isRoutable,
+  config,
+  ...props
+}) => {
   const [item, index] = props.item;
   return (
     <TouchableWithoutFeedback
-      onPress={() => navigation.navigate("Topic Thread")}
+      onPress={() => (isRoutable === true ? navigation.navigate(route) : null)}
     >
       <Card
         containerStyle={{

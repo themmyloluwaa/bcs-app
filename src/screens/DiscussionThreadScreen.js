@@ -79,6 +79,7 @@ const DiscussionThreadScreen = ({ navigation }) => {
             renderItem={({ item, index }) => (
               <DiscussionThreadComponent
                 navigation={navigation}
+                isRoutable={false}
                 item={[item, index]}
                 config={
                   index === 0

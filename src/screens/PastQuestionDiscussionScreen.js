@@ -85,6 +85,8 @@ const PastQuestionDiscussionScreen = ({ navigation }) => {
               <DiscussionThreadComponent
                 navigation={navigation}
                 item={[item, index]}
+                route="Question Thread"
+                isRoutable={true}
                 config={{
                   mb: 5,
                   height: 300,
