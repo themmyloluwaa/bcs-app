@@ -46,7 +46,7 @@ const PastQuestionAnswer = ({ navigation }) => {
       <HeaderComponent
         navigation={navigation}
         text="Past Answer"
-        route="Question Forum"
+        route="Resource Discussions"
         show={true}
       />
 

@@ -9,15 +9,19 @@ const HeaderComponent = props => {
     <>
       <StatusBar backgroundColor="#3E011C" barStyle={"light-content"} />
       <View
-        style={{
-          backgroundColor: "#490222",
-          height: width * 0.25,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-around",
-          paddingHorizontal: 16,
-          paddingTop: Platform.OS === "ios" ? 15 : null
-        }}
+        style={
+          props.style
+            ? props.style
+            : {
+                backgroundColor: "#490222",
+                height: "10%",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-around",
+                paddingHorizontal: 16,
+                paddingTop: Platform.OS === "ios" ? 15 : null
+              }
+        }
       >
         <Icon
           name="arrow-left"

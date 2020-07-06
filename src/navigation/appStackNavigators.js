@@ -14,6 +14,8 @@ import QuizScreen from "../screens/QuizScreen";
 import QuizResultScreen from "../screens/QuizResultScreen";
 import PastQuestionQuestion from "../screens/PastQuestionQuestion";
 import PastQuestionAnswer from "../screens/PastQuestionAnswer";
+import PastQuestionDiscussionScreen from "../screens/PastQuestionDiscussionScreen";
+// import PastQuestionAnswer from "../screens/PastQuestionAnswer";
 
 const LearningStackNavigator = createStackNavigator();
 const ResourceStackNavigator = createStackNavigator();
@@ -37,9 +39,15 @@ const topicDicussionNavigator = () => (
 );
 
 const pastQuestionDicussionNavigator = () => (
-  <PastQuestionDiscussionNavigator.Navigator>
-    <PastQuestionDiscussionNavigator.Screen name="Question Forum" />
-    <PastQuestionDiscussionNavigator.Screen name="Question Thread" />
+  <PastQuestionDiscussionNavigator.Navigator initialRouteName="Question Forum">
+    <PastQuestionDiscussionNavigator.Screen
+      name="Question Forum"
+      component={PastQuestionDiscussionScreen}
+    />
+    <PastQuestionDiscussionNavigator.Screen
+      name="Question Thread"
+      component={PastQuestionDiscussionScreen}
+    />
   </PastQuestionDiscussionNavigator.Navigator>
 );
 

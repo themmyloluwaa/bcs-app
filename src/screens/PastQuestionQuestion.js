@@ -126,7 +126,7 @@ const PastQuestionQuestion = ({ navigation }) => {
       <HeaderComponent
         navigation={navigation}
         text="Past Questions"
-        route="Question Forum"
+        route="Resource Discussions"
         show={true}
       />
       <SafeAreaView style={styles.container}>
@@ -317,15 +317,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold"
-  },
-  buttonContainerStyle: {
-    alignSelf: "center",
-    width: 330,
-    marginVertical: 5,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5
   }
 });
 
