@@ -8,13 +8,13 @@ import RequestScreen from "../screens/messagescreen/RequestScreen";
 import CourseScreen from "../screens/CourseScreen";
 import DiscussionScreen from "../screens/DiscussionScreen";
 import DiscussionThreadScreen from "../screens/DiscussionThreadScreen";
-// // import DiscussionScreenThread from "../screens/DiscussionScreenThread";
 import ContentScreen from "../screens/learningscreen/ContentScreen";
 import QuizScreen from "../screens/QuizScreen";
 import QuizResultScreen from "../screens/QuizResultScreen";
 import PastQuestionQuestion from "../screens/PastQuestionQuestion";
 import PastQuestionAnswer from "../screens/PastQuestionAnswer";
 import PastQuestionDiscussionScreen from "../screens/PastQuestionDiscussionScreen";
+import PastQuestionDiscussionThreadScreen from "../screens/PastQuestionDiscussionThreadScreen";
 // import PastQuestionAnswer from "../screens/PastQuestionAnswer";
 
 const LearningStackNavigator = createStackNavigator();
@@ -46,7 +46,7 @@ const pastQuestionDicussionNavigator = () => (
     />
     <PastQuestionDiscussionNavigator.Screen
       name="Question Thread"
-      component={PastQuestionDiscussionScreen}
+      component={PastQuestionDiscussionThreadScreen}
     />
   </PastQuestionDiscussionNavigator.Navigator>
 );
