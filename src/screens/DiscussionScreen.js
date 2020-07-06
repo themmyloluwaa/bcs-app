@@ -1,8 +1,12 @@
 import React from "react";
 import { View, Text, StatusBar, Dimensions, FlatList } from "react-native";
 import { appStyles } from "../../utils/appStyles";
-import Icon from "react-native-vector-icons/FontAwesome5";
+// import Icon from "react-native-vector-icons/FontAwesome5";
 import DiscussionThreadComponent from "../components/learning/DiscussionThreadComponent";
+import HeaderComponent from "../components/general/HeaderComponent";
+
+import { Input, Icon } from "react-native-elements";
+import CustomInputComponent from "../components/general/CustomInputComponent";
 
 const source = require("../assets/target_monochromatic.png");
 
@@ -46,6 +50,7 @@ const DATA = [
 ];
 
 const { height, width } = Dimensions.get("window");
+
 const DiscussionScreen = ({ navigation }) => {
   return (
     <>
@@ -55,7 +60,7 @@ const DiscussionScreen = ({ navigation }) => {
           backgroundColor: "#E5E5E5"
         }}
       >
-        <View
+        <HeaderComponent
           style={{
             backgroundColor: appStyles.primary,
             height: width * 0.25,
@@ -64,30 +69,14 @@ const DiscussionScreen = ({ navigation }) => {
             paddingHorizontal: 16,
             paddingTop: Platform.OS === "ios" ? 15 : null
           }}
-        >
-          <Icon
-            name="arrow-left"
-            size={20}
-            style={{
-              opacity: 0.8,
-              color: "#fff"
-            }}
-            onPress={() => navigation.goBack()}
-          />
-          <Text
-            style={{
-              color: "#fff",
-              fontSize: 20,
-              textAlign: "center",
-              marginLeft: 20
-            }}
-          >
-            Selecting Colors
-          </Text>
-        </View>
+          navigation={navigation}
+          text="Selecting Colours"
+          show={false}
+        />
+
         <View
           style={{
-            height: height - width * 0.25
+            height: "70%"
           }}
         >
           <FlatList
@@ -106,6 +95,7 @@ const DiscussionScreen = ({ navigation }) => {
             keyExtractor={item => item.id}
           />
         </View>
+        <CustomInputComponent placeholder="Make a post" />
       </View>
     </>
   );

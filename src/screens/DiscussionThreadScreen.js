@@ -3,8 +3,8 @@ import { View, Text, StatusBar, Dimensions, FlatList } from "react-native";
 import { appStyles } from "../../utils/appStyles";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import DiscussionThreadComponent from "../components/learning/DiscussionThreadComponent";
-
-const source = require("../assets/target_monochromatic.png");
+import CustomInputComponent from "../components/general/CustomInputComponent";
+import HeaderComponent from "../components/general/HeaderComponent";
 
 const DATA = [
   {
@@ -56,7 +56,7 @@ const DiscussionThreadScreen = ({ navigation }) => {
           backgroundColor: "#E5E5E5"
         }}
       >
-        <View
+        <HeaderComponent
           style={{
             backgroundColor: appStyles.primary,
             height: width * 0.25,
@@ -65,30 +65,13 @@ const DiscussionThreadScreen = ({ navigation }) => {
             paddingHorizontal: 16,
             paddingTop: Platform.OS === "ios" ? 15 : null
           }}
-        >
-          <Icon
-            name="arrow-left"
-            size={20}
-            style={{
-              opacity: 0.8,
-              color: "#fff"
-            }}
-            onPress={() => navigation.goBack()}
-          />
-          <Text
-            style={{
-              color: "#fff",
-              fontSize: 20,
-              textAlign: "center",
-              marginLeft: 20
-            }}
-          >
-            Selecting Colors
-          </Text>
-        </View>
+          navigation={navigation}
+          text="Selecting Colours"
+          show={false}
+        />
         <View
           style={{
-            height: height - width * 0.25
+            height: "70%"
           }}
         >
           <FlatList
@@ -115,6 +98,7 @@ const DiscussionThreadScreen = ({ navigation }) => {
             keyExtractor={item => item.id}
           />
         </View>
+        <CustomInputComponent placeholder="Reply this thread" />
       </View>
     </>
   );
