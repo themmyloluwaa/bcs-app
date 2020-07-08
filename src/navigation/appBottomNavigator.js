@@ -17,7 +17,7 @@ import { mainNavigator } from "./accountStackNavigator";
 
 const createAppNavigator = () => (
   <BottomNavigator.Navigator
-    initialRouteName="Resources"
+    initialRouteName="Messages"
     screenOptions={{
       tabBarColor: "#490222"
     }}
