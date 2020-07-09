@@ -1,11 +1,35 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StatusBar, ScrollView } from "react-native";
+import MessageHeader from "../../components/messaging/MessageHeader";
 
-const MessagesScreen = () => {
+const MessagesScreen = ({ navigation }) => {
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <>
+      <MessageHeader navigation={navigation} />
+
+      <ScrollView
+        style={{
+          backgroundColor: "#000"
+        }}
+        contentContainerStyle={{
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <StatusBar
+          backgroundColor="#3E011C"
+          barStyle={"light-content"}
+          translucent={false}
+        />
+        <Text
+          style={{
+            color: "#fff"
+          }}
+        >
+          hi
+        </Text>
+      </ScrollView>
+    </>
   );
 };
 
