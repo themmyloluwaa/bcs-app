@@ -4,6 +4,7 @@ import LearningScreen from "../screens/appscreen/LearningScreen";
 import ResourceScreen from "../screens/appscreen/ResourceScreen";
 
 import ChatScreen from "../screens/messagescreen/ChatScreen";
+import MessagesScreen from "../screens/messagescreen/MessagesScreen";
 import RequestScreen from "../screens/messagescreen/RequestScreen";
 import CourseScreen from "../screens/CourseScreen";
 import DiscussionScreen from "../screens/DiscussionScreen";
@@ -99,7 +100,7 @@ export const resourceStackNavigator = () => (
 export const chatNavigator = () => (
   <ChatNavigator.Navigator initialRouteName="Chats">
     <ChatNavigator.Screen name="Chats" component={ChatScreen} />
-    <ChatNavigator.Screen name="Chats Chatting" component={ChatScreen} />
+    <ChatNavigator.Screen name="Chats Chatting" component={MessagesScreen} />
     <ChatNavigator.Screen
       name="Chats Reciever Profile"
       component={ChatScreen}
