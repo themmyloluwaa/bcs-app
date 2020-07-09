@@ -45,10 +45,13 @@ const ChatScreen = ({ navigation }) => {
   return (
     <>
       <StatusBar backgroundColor="#3E011C" barStyle={"light-content"} />
+
       <View
-        style={{
-          flex: 1
-        }}
+        style={
+          {
+            // flex: 1
+          }
+        }
       >
         <FlatList
           data={DATA}
@@ -56,7 +59,7 @@ const ChatScreen = ({ navigation }) => {
             return (
               <>
                 <ListItem
-                  onPress={() => console.log("yes")}
+                  onPress={() => navigation.navigate("Chats Chatting")}
                   leftAvatar={{
                     source,
                     avatarStyle: { resizeMode: "cover", borderRadius: 5 },
@@ -84,7 +87,8 @@ const ChatScreen = ({ navigation }) => {
                         style={{
                           color: "#fff",
                           fontSize: 14,
-                          padding: 5
+                          paddingHorizontal: 10,
+                          paddingVertical: 5
                         }}
                       >
                         2
@@ -102,6 +106,20 @@ const ChatScreen = ({ navigation }) => {
           }}
           keyExtractor={item => item.id}
         />
+      </View>
+      <View
+        style={{
+          backgroundColor: "#490222",
+          width: 56,
+          height: 56,
+          position: "relative",
+          bottom: 100,
+          left: 340,
+          borderRadius: 100 / 2,
+          justifyContent: "center"
+        }}
+      >
+        <Icon type="antdesign" name="plus" color="#fff" />
       </View>
     </>
   );
