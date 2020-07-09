@@ -1,6 +1,9 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { chatNavigator, requestNavigator } from "./appStackNavigators";
+import ChatScreen from "../screens/messagescreen/ChatScreen";
+import MessagesScreen from "../screens/messagescreen/MessagesScreen";
+import RequestScreen from "../screens/messagescreen/RequestScreen";
 const MessageTopNavigator = createMaterialTopTabNavigator();
 
 import NewChatScreen from "../screens/messagescreen/NewChatScreen";
@@ -20,8 +23,8 @@ const messageNavigator = () => (
       tabStyle: { height: 100, justifyContent: "flex-end" }
     }}
   >
-    <MessageTopNavigator.Screen name="Chats" children={chatNavigator} />
-    <MessageTopNavigator.Screen name="Request" children={requestNavigator} />
+    <MessageTopNavigator.Screen name="Chats" component={ChatScreen} />
+    <MessageTopNavigator.Screen name="Request" component={RequestScreen} />
   </MessageTopNavigator.Navigator>
 );
 export const MessageNavigator = () => (
@@ -33,6 +36,10 @@ export const MessageNavigator = () => (
     <MessageContainerNavigator.Screen
       component={NewChatScreen}
       name="New Message"
+    />
+    <MessageContainerNavigator.Screen
+      component={MessagesScreen}
+      name="Chats Chatting"
     />
   </MessageContainerNavigator.Navigator>
 );
