@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,10 +6,12 @@ import {
   Dimensions,
   ActivityIndicator
 } from "react-native";
-import { Icon, Avatar } from "react-native-elements";
+import { Icon, Avatar, Card, Divider } from "react-native-elements";
+import ShareWidget from "./ShareWidget";
 const { height, width } = Dimensions.get("window");
 
 const MessageHeader = props => {
+  const [more, setMore] = props.more;
   return (
     <>
       <StatusBar
@@ -61,7 +63,8 @@ const MessageHeader = props => {
             style={{
               paddingHorizontal: 10,
               fontSize: 18,
-              color: "#fff"
+              color: "#fff",
+              fontWeight: "600"
             }}
           >
             Abdulaiman SUileman
@@ -78,6 +81,7 @@ const MessageHeader = props => {
           />
         }
       </View>
+      {more && <ShareWidget />}
     </>
   );
 };
