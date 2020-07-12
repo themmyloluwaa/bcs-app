@@ -8,7 +8,7 @@ const ShareWidget = () => {
         alignSelf: "flex-end",
         position: "absolute",
         width: 250,
-        height: 220,
+        height: 270,
         backgroundColor: "#490222",
         opacity: 0.95,
         borderColor: "#490222",
@@ -63,7 +63,36 @@ const ShareWidget = () => {
               color: "#fff"
             }}
           >
-            Image
+            Take Picture
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => console.log("me")}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            paddingLeft: 10,
+            justifyContent: "flex-start",
+            paddingVertical: 20
+          }}
+        >
+          <Icon
+            name="image"
+            type="entypo"
+            size={22}
+            color="#adada6"
+            containerStyle={{
+              marginRight: 20
+            }}
+          />
+          <Text
+            style={{
+              fontSize: 20,
+              color: "#fff"
+            }}
+          >
+            Upload Image
           </Text>
         </View>
       </TouchableWithoutFeedback>

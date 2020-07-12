@@ -1,8 +1,10 @@
 import React from "react";
-import { View, Text, StatusBar, FlatList } from "react-native";
+import { View, Text, StatusBar, FlatList, Dimensions } from "react-native";
 import { ListItem, Divider, Icon } from "react-native-elements";
 
 const source = require("../../assets/bg-img.png");
+
+const { width } = Dimensions.get("window");
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -114,7 +116,7 @@ const ChatScreen = ({ navigation }) => {
           height: 56,
           position: "relative",
           bottom: 100,
-          left: 340,
+          left: width - 100,
           borderRadius: 100 / 2,
           justifyContent: "center"
         }}
