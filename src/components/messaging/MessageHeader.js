@@ -81,7 +81,7 @@ const MessageHeader = props => {
           />
         }
       </View>
-      {more && <ShareWidget />}
+      {more && <ShareWidget navigation={props.navigation} />}
     </>
   );
 };

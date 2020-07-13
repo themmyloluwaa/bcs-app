@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableWithoutFeedback } from "react-native";
 import { Icon, Card, Divider } from "react-native-elements";
-const ShareWidget = () => {
+const ShareWidget = ({ navigation }) => {
   return (
     <Card
       containerStyle={{
@@ -38,7 +38,7 @@ const ShareWidget = () => {
           right: 15
         }}
       />
-      <TouchableWithoutFeedback onPress={() => console.log("me")}>
+      <TouchableWithoutFeedback onPress={() => navigation.navigate("Camera")}>
         <View
           style={{
             flexDirection: "row",
