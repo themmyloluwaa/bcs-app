@@ -31,7 +31,7 @@ const EditImage = ({ navigation, route }) => {
       );
       setPhoto(manipResult);
 
-      setTimeout(() => setLoading(false), 250);
+      setLoading(false);
       return;
     }
     const manipResult = await ImageManipulator.manipulateAsync(
@@ -42,6 +42,11 @@ const EditImage = ({ navigation, route }) => {
     setPhoto(manipResult);
     setLoading(false);
     return;
+  };
+
+  const onProceed = () => {
+    navigation.navigate(route.params.route, { photo });
+    console.log(route.params.route);
   };
 
   const handleFlip = async (flip = "HORIZONTAL") => {
@@ -60,17 +65,15 @@ const EditImage = ({ navigation, route }) => {
       { compress: 1, format: ImageManipulator.SaveFormat.PNG }
     );
     setPhoto(manipResult);
-
-    setTimeout(() => setLoading(false), 250);
+    setLoading(false);
   };
 
-  const handleCrop = () => {
-    setLoading(true);
-
-    setTimeout(() => setLoading(false), 250);
-  };
   return (
-    <>
+    <View
+      style={{
+        backgroundColor: "black"
+      }}
+    >
       <HeaderComponent
         style={{
           backgroundColor: appStyles.primary,
@@ -90,13 +93,13 @@ const EditImage = ({ navigation, route }) => {
           justifyContent: "space-evenly",
           alignItems: "center",
           flexDirection: "row",
-          height: "10%",
+          height: "8%",
           zIndex: 9999999999
         }}
       >
-        <TouchableWithoutFeedback onPress={() => handleCrop()}>
+        {/* <TouchableWithoutFeedback onPress={() => handleCrop()}>
           <Icon color="#fff" name="crop" />
-        </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback> */}
         <TouchableWithoutFeedback onPress={async () => await handleRotate()}>
           <Icon color="#fff" name="rotate-90-degrees-ccw" />
         </TouchableWithoutFeedback>
@@ -122,7 +125,8 @@ const EditImage = ({ navigation, route }) => {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          height: "70%"
+          height: "70%",
+          backgroundColor: "black"
         }}
       >
         <Image
@@ -142,13 +146,15 @@ const EditImage = ({ navigation, route }) => {
       <Button
         containerStyle={{
           marginVertical: 10,
-          paddingHorizontal: 20
+          paddingHorizontal: 20,
+          backgroundColor: "black"
         }}
         buttonStyle={{
           backgroundColor: appStyles.primary,
           borderColor: appStyles.primary,
           height: 50
         }}
+        onPress={() => onProceed()}
         title="Proceed"
         titleStyle={{
           color: appStyles.white
@@ -176,7 +182,7 @@ const EditImage = ({ navigation, route }) => {
           />
         </View>
       </Overlay>
-    </>
+    </View>
   );
 };
 

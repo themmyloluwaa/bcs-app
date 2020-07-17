@@ -22,6 +22,7 @@ const renderCamera = (ready = true, data = []) => {
     navigation,
     setImage,
     loading,
+    route,
     setLoading,
     setType
   ] = data;
@@ -76,7 +77,8 @@ const renderCamera = (ready = true, data = []) => {
 
                 setLoading(false);
                 navigation.navigate("Edit Image", {
-                  photo
+                  photo,
+                  route: route.params.route
                 });
 
                 setImage(photo);
@@ -203,6 +205,7 @@ const CameraScreen = ({ navigation, route }) => {
         navigation,
         setImage,
         loading,
+        route,
         setLoading,
         setType
       ])}

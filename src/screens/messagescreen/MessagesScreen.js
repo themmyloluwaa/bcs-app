@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StatusBar, ScrollView } from "react-native";
 import MessageHeader from "../../components/messaging/MessageHeader";
 
-const MessagesScreen = ({ navigation }) => {
+const MessagesScreen = ({ navigation, route }) => {
   const [more, setMore] = useState(true);
+  const [photo, setPhoto] = useState({});
+
+  useEffect(() => {
+    if (route.params !== undefined) {
+      if (route.params.photo !== undefined) {
+        console.log(route.params.photo);
+      }
+    }
+    return undefined;
+  }, [route.params]);
 
   return (
     <>
