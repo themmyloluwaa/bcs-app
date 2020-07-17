@@ -11,8 +11,6 @@ import { Image, Button, Icon, Overlay } from "react-native-elements";
 import { appStyles } from "../../utils/appStyles";
 import * as ImageManipulator from "expo-image-manipulator";
 
-import ImagePicker from "react-native-image-crop-picker";
-
 const { height, width } = Dimensions.get("window");
 const EditImage = ({ navigation, route }) => {
   const [photo, setPhoto] = useState({});
@@ -68,16 +66,6 @@ const EditImage = ({ navigation, route }) => {
 
   const handleCrop = () => {
     setLoading(true);
-
-    ImagePicker.openCropper({
-      path: photo.uri,
-      width: 300,
-      height: 400
-    })
-      .then(image => {
-        console.log(image);
-      })
-      .catch(e => console.log(e));
 
     setTimeout(() => setLoading(false), 250);
   };
