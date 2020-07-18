@@ -45,7 +45,8 @@
     "react-native-web": "~0.11.7",
     "react-native-webview": "9.4.0",
     "subscriptions-transport-ws": "^0.9.16",
-    "tailwind-rn": "^1.1.1"
+    "tailwind-rn": "^1.1.1",
+    "expo-document-picker": "~8.2.1"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
