@@ -6,7 +6,7 @@ import MessageBubble from "../../components/messaging/MessageBubble";
 const MessagesScreen = ({ navigation, route }) => {
   const [more, setMore] = useState(false);
   const [photo, setPhoto] = useState({});
-  const [scrollRef, setScrollRef] = useState([]);
+  const [scrollRef, setScrollRef] = useState(undefined);
 
   useEffect(() => {
     if (route.params !== undefined) {
@@ -18,11 +18,23 @@ const MessagesScreen = ({ navigation, route }) => {
     return undefined;
   }, [route.params]);
 
+  // React.useEffect(() => {
+  //   const unsubscribe = navigation.addListener("focus", () => {
+  //     scrollRef !== undefined && scrollRef.scrollToEnd({ animated: true });
+  //   });
+
+  //   return unsubscribe;
+  // }, [navigation]);
+
   useEffect(() => {
     // console.log();
-    scrollRef !== undefined && scrollRef.scrollToEnd({ animated: true });
-  }, []);
 
+    setTimeout(() => {
+      scrollRef !== undefined && scrollRef.scrollToEnd({ animated: true });
+    }, 100);
+  }, [scrollRef]);
+
+  console.log(scrollRef);
   return (
     <>
       <MessageHeader navigation={navigation} more={[more, setMore]} />

@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const messages = [1, 2, 3];
+const messages = [1, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1];
 const MessageBubble = () => {
   const [userId, setUserId] = useState(1);
   return (
     <>
-      {messages.map((data, i) => (
+      {[...messages, ...messages].map((data, i) => (
         <View
           style={[
             styles.talkBubble,
             {
               flexDirection: userId === 1 ? "row" : "row-reverse",
-              marginBottom: i === messages.length - 1 ? 40 : 20
+              marginBottom: 20
             }
           ]}
         >
