@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableWithoutFeedback } from "react-native";
 import { Icon, Card, Divider } from "react-native-elements";
+import * as DocumentPicker from "expo-document-picker";
 const ShareWidget = ({ navigation }) => {
   return (
     <Card
@@ -67,11 +68,19 @@ const ShareWidget = ({ navigation }) => {
               color: "#fff"
             }}
           >
-            Take Picture
+            Camera
           </Text>
         </View>
       </TouchableWithoutFeedback>
-      <TouchableWithoutFeedback onPress={() => console.log("me")}>
+      <TouchableWithoutFeedback
+        onPress={() =>
+          DocumentPicker.getDocumentAsync({
+            type: "image/*"
+          })
+            .then(data => console.log(data))
+            .catch(e => console.log(e))
+        }
+      >
         <View
           style={{
             flexDirection: "row",
@@ -96,11 +105,19 @@ const ShareWidget = ({ navigation }) => {
               color: "#fff"
             }}
           >
-            Upload Image
+            Photos & Gifs
           </Text>
         </View>
       </TouchableWithoutFeedback>
-      <TouchableWithoutFeedback onPress={() => console.log("me")}>
+      <TouchableWithoutFeedback
+        onPress={() =>
+          DocumentPicker.getDocumentAsync({
+            type: "application/*"
+          })
+            .then(data => console.log(data))
+            .catch(e => console.log(e))
+        }
+      >
         <View
           style={{
             flexDirection: "row",
@@ -125,7 +142,7 @@ const ShareWidget = ({ navigation }) => {
               color: "#fff"
             }}
           >
-            PDF File
+            Document
           </Text>
         </View>
       </TouchableWithoutFeedback>
