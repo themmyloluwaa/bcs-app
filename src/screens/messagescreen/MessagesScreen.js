@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StatusBar, ScrollView, SafeAreaView } from "react-native";
+import { View, Text, StatusBar, ScrollView } from "react-native";
 import MessageHeader from "../../components/messaging/MessageHeader";
 import MessageBubble from "../../components/messaging/MessageBubble";
+import CustomInputComponent from "../../components/general/CustomInputComponent";
 
 const MessagesScreen = ({ navigation, route }) => {
   const [more, setMore] = useState(false);
@@ -62,6 +63,7 @@ const MessagesScreen = ({ navigation, route }) => {
           <MessageBubble />
         </View>
       </ScrollView>
+      {/* <CustomInputComponent placeholder="Make a post" /> */}
     </>
   );
 };
