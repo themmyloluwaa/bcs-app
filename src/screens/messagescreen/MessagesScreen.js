@@ -10,6 +10,7 @@ const MessagesScreen = ({ navigation, route }) => {
     if (route.params !== undefined) {
       if (route.params.photo !== undefined) {
         console.log(route.params.photo);
+        setPhoto(route.params.photo);
       }
     }
     return undefined;
