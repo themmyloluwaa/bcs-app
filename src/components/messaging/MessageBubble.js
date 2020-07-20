@@ -48,7 +48,7 @@ const MessageBubble = () => {
           style={[
             styles.talkBubble,
             {
-              flexDirection: userId === 1 ? "row" : "row-reverse",
+              flexDirection: userId !== 1 ? "row" : "row-reverse",
               marginBottom: 20
             }
           ]}
@@ -57,7 +57,7 @@ const MessageBubble = () => {
             style={[
               styles.talkBubbleSquare,
               {
-                backgroundColor: userId === 1 ? "#490222" : "#E6EFF0"
+                backgroundColor: userId !== 1 ? "#490222" : "#E6EFF0"
               }
             ]}
           >
@@ -77,7 +77,7 @@ const MessageBubble = () => {
             >
               <Text
                 style={{
-                  color: userId === 1 ? "#fff" : "#000",
+                  color: userId !== 1 ? "#fff" : "#000",
                   marginBottom: 10
                 }}
               >
@@ -104,13 +104,13 @@ const MessageBubble = () => {
               >
                 <Text
                   style={{
-                    color: userId === 1 ? "#fff" : "#000",
+                    color: userId !== 1 ? "#fff" : "#000",
                     paddingRight: 5
                   }}
                 >
                   {b}
                 </Text>
-                <Read read={true} />
+                {userId !== 1 && <Read read={true} />}
               </View>
             </View>
           </View>
@@ -118,10 +118,10 @@ const MessageBubble = () => {
             style={[
               styles.talkBubbleTriangle,
               {
-                borderRightWidth: userId === 1 ? 26 : 0,
-                borderLeftWidth: userId === 1 ? 0 : 26,
-                borderRightColor: userId === 1 ? "#490222" : "",
-                borderLeftColor: userId === 1 ? "" : "#E6EFF0"
+                borderRightWidth: userId !== 1 ? 26 : 0,
+                borderLeftWidth: userId !== 1 ? 0 : 26,
+                borderRightColor: userId !== 1 ? "#490222" : "",
+                borderLeftColor: userId !== 1 ? "" : "#E6EFF0"
               }
             ]}
           />
