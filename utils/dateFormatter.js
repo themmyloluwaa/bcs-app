@@ -12,7 +12,7 @@ const formateDate = (date = "", locale = "en") => {
   dayjs.updateLocale(locale, {
     calendar: {
       lastDay: "[Yesterday,] h:mm A",
-      sameDay: "[Today,] h:mm A",
+      sameDay: "h:mm A",
       nextDay: "[Tomorrow,] h:mm A",
       lastWeek: "[last] dddd[,] h:mm A",
       nextWeek: "[Next] dddd[,] h:mm A",

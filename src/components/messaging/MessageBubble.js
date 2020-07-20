@@ -9,7 +9,7 @@ const Read = ({ read }) => {
       <>
         <Icon
           type="feather"
-          size={16}
+          size={12}
           name="check"
           color="green"
           containerStyle={{
@@ -19,13 +19,13 @@ const Read = ({ read }) => {
         />
         <Icon
           type="feather"
-          size={18}
+          size={14}
           name="check"
           color="green"
           containerStyle={{
             //   backgroundColor: "#000",
-            left: -16,
-            top: 0
+            left: -12,
+            top: -1
           }}
         />
       </>
@@ -38,8 +38,9 @@ const Read = ({ read }) => {
 const messages = [1, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1];
 const MessageBubble = () => {
   const b = formateDate("2020-07-13 14:00:39.16");
+  // console.log(formateDate());
 
-  const [userId, setUserId] = useState(1);
+  const [userId, setUserId] = useState(11);
   return (
     <>
       {[...messages, ...messages].map((data, i) => (
@@ -104,8 +105,9 @@ const MessageBubble = () => {
               >
                 <Text
                   style={{
-                    color: userId !== 1 ? "#fff" : "#000",
-                    paddingRight: 5
+                    color: userId !== 1 ? "#fafefe" : "#000",
+                    paddingRight: 5,
+                    fontSize: 10
                   }}
                 >
                   {b}
