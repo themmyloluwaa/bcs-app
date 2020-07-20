@@ -4,15 +4,24 @@ import {
   Text,
   ActivityIndicator,
   TouchableWithoutFeedback,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 import { Image, Tooltip, Overlay, Button, Icon } from "react-native-elements";
 import ReadComponent from "./ReadComponent";
 import GalleryComponent from "./GalleryComponent";
+import downloadAsset from "../../../utils/downloadAsset";
 
 const ImageComponent = ({ userId, ...props }) => {
   const tooltipRef = useRef(null);
   const [visible, setVisible] = useState(false);
+  const [downloadProgress, setDownloadProgress] = useState(null);
+
+  const callback = dp => {
+    // console.log(dp.totalBytesWritten, "/", dp.totalBytesExpectedToWrite);
+    const progress = dp.totalBytesWritten / dp.totalBytesExpectedToWrite;
+    setDownloadProgress(progress);
+  };
 
   return (
     <>
@@ -30,12 +39,31 @@ const ImageComponent = ({ userId, ...props }) => {
           <Tooltip
             ref={tooltipRef}
             toggleOnPress={false}
-            popover={<Text>Download</Text>}
+            popover={
+              <Text
+                onPress={async () => {
+                  const value = await downloadAsset(
+                    "https://i.pinimg.com/originals/85/3f/af/853faf586b65a0ac4b63081404b186ce.gif",
+                    callback
+                  );
+                  console.log(value);
+                  Alert.alert("Download Message", "download is complete", [
+                    {
+                      text: "Ok",
+                      onPress: () => tooltipRef.current.toggleTooltip()
+                    }
+                  ]);
+                }}
+              >
+                Download
+              </Text>
+            }
           >
             <Image
               source={{
                 uri:
-                  "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg"
+                  // "file:///Users/developer/Library/Developer/CoreSimulator/Devices/E488FD70-3257-4E23-92B7-F245F2D59426/data/Containers/Data/Application/DC343C86-F2C2-46A8-B572-02AA35572D52/Documents/ExponentExperienceData/%2540codekagei%252Fexpo-template-bare/BCS-ME_1595280064869"
+                  "https://i.pinimg.com/originals/85/3f/af/853faf586b65a0ac4b63081404b186ce.gif"
               }}
               style={{ width: 200, height: 200 }}
               containerStyle={{
@@ -47,7 +75,8 @@ const ImageComponent = ({ userId, ...props }) => {
                   color="#490222"
                   size="large"
                   style={{
-                    height: 200
+                    height: 200,
+                    backgroundColor: "transparent"
                   }}
                 />
               }
@@ -76,7 +105,8 @@ const ImageComponent = ({ userId, ...props }) => {
         data={[
           visible,
           setVisible,
-          "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg"
+          "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg",
+          callback
         ]}
       />
     </>

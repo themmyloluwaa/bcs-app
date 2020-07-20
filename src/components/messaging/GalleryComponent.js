@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Dimensions, ActivityIndicator } from "react-native";
+import { View, Dimensions, ActivityIndicator, Alert } from "react-native";
 import { Image, Overlay, Button, Icon } from "react-native-elements";
 
 const { width } = Dimensions.get("window");
-
+import downloadAsset from "../../../utils/downloadAsset";
 const GalleryComponent = props => {
-  const [visible, setVisible, image] = props.data;
+  const [visible, setVisible, image, cb] = props.data;
   return (
     <Overlay isVisible={visible} onBackdropPress={() => setVisible(false)}>
       <View
@@ -42,6 +42,12 @@ const GalleryComponent = props => {
           }}
           buttonStyle={{
             backgroundColor: "#490222"
+          }}
+          onPress={async () => {
+            const value = await downloadAsset(image, cb);
+            Alert.alert("Download Message", "download is complete", [
+              { text: "Ok", onPress: () => setVisible(false) }
+            ]);
           }}
           icon={
             <Icon

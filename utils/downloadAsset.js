@@ -1,17 +1,18 @@
-import FileSystem from "expo-file-system";
+import * as FileSystem from "expo-file-system";
 
 const downloadAsset = async (url = "", cb) => {
+  let extension = url.split(".");
+  extension = extension[extension.length - 1];
   let result;
   const downloadResumable = FileSystem.createDownloadResumable(
     url,
-    FileSystem.documentDirectory + `BCS-ME_${Date.now()}`,
+    FileSystem.documentDirectory + `BCS-ME_${Date.now()}.${extension}`,
     {},
     cb
   );
 
   try {
     const { uri } = await downloadResumable.downloadAsync();
-    console.log("Finished downloading to ", uri);
     result = uri;
   } catch (e) {
     console.error(e);
