@@ -77,7 +77,7 @@ const MessageBubble = () => {
                 padding: 20
               }}
             >
-              <Tooltip popover={<Text style={{}}>Copy</Text>}>
+              <Tooltip popover={<Text>Copy</Text>}>
                 <Text
                   style={{
                     color: userId !== 1 ? "#fff" : "#000",

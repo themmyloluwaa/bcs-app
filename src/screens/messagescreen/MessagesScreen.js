@@ -3,11 +3,13 @@ import { View, Text, StatusBar, ScrollView } from "react-native";
 import MessageHeader from "../../components/messaging/MessageHeader";
 import MessageBubble from "../../components/messaging/MessageBubble";
 import CustomInputComponent from "../../components/general/CustomInputComponent";
-
+import { copyText, pasteText } from "../../../utils/clipboardUtil";
 const MessagesScreen = ({ navigation, route }) => {
   const [more, setMore] = useState(false);
   const [photo, setPhoto] = useState({});
   const [scrollRef, setScrollRef] = useState(undefined);
+
+  copyText("fjfjfjf");
 
   useEffect(() => {
     if (route.params !== undefined) {
