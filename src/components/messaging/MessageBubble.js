@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Icon } from "react-native-elements";
+import { Icon, Tooltip } from "react-native-elements";
 import { formateDate } from "../../../utils/dateFormatter";
 
 const Read = ({ read }) => {
@@ -37,10 +37,11 @@ const Read = ({ read }) => {
 
 const messages = [1, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1];
 const MessageBubble = () => {
-  const b = formateDate("2020-07-13 14:00:39.16");
-  // console.log(formateDate());
+  let b;
+  //  b = formateDate("2020-07-13 14:00:39.16");
+  b = formateDate();
 
-  const [userId, setUserId] = useState(11);
+  const [userId, setUserId] = useState(1);
   return (
     <>
       {[...messages, ...messages].map((data, i) => (
@@ -76,27 +77,30 @@ const MessageBubble = () => {
                 padding: 20
               }}
             >
-              <Text
-                style={{
-                  color: userId !== 1 ? "#fff" : "#000",
-                  marginBottom: 10
-                }}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </Text>
+              <Tooltip popover={<Text style={{}}>Copy</Text>}>
+                <Text
+                  style={{
+                    color: userId !== 1 ? "#fff" : "#000",
+                    marginBottom: 10
+                  }}
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum. Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                  ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                  ea commodo consequat. Duis aute irure dolor in reprehenderit
+                  in voluptate velit esse cillum dolore eu fugiat nulla
+                  pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+                  in culpa qui officia deserunt mollit anim id est laborum.
+                </Text>
+              </Tooltip>
               <View
                 style={{
                   flexDirection: "row",
