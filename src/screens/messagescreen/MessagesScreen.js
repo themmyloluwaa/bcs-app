@@ -35,7 +35,7 @@ const MessagesScreen = ({ navigation, route }) => {
     }, 100);
   }, [scrollRef]);
 
-  console.log(scrollRef);
+  // console.log(scrollRef);
   return (
     <>
       <MessageHeader navigation={navigation} more={[more, setMore]} />

@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
+import { formateDate } from "../../../utils/dateFormatter";
+
 const messages = [1, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1];
 const MessageBubble = () => {
+  const b = formateDate("2020-07-13 14:00:39.16");
+
   const [userId, setUserId] = useState(1);
   return (
     <>
       {[...messages, ...messages].map((data, i) => (
         <View
+          key={i}
           style={[
             styles.talkBubble,
             {
@@ -49,16 +54,14 @@ const MessageBubble = () => {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </Text>
-              <Icon
-                type="feather"
-                size={20}
-                name="check"
-                color="green"
-                containerStyle={{
-                  //   backgroundColor: "#000",
-                  alignSelf: "flex-end"
+              <Text
+                style={{
+                  alignSelf: "flex-end",
+                  color: userId === 1 ? "#fff" : "#000"
                 }}
-              />
+              >
+                {b}
+              </Text>
             </View>
           </View>
           <View
