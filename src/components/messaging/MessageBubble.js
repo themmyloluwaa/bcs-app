@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Icon, Tooltip } from "react-native-elements";
 import { formateDate } from "../../../utils/dateFormatter";
 import TextComponent from "./TextComponent";
+import ImageComponent from "./ImageComponent";
 
 const Read = ({ read }) => {
   if (!!read) {
@@ -64,40 +65,8 @@ const MessageBubble = () => {
               }
             ]}
           >
-            {/* <Text
-              style={{
-                alignSelf: "flex-end",
-                paddingHorizontal: 10,
-                paddingVertical: 5
-              }}
-            >
-              Hello
-            </Text> */}
-            <View
-              style={{
-                padding: 20
-              }}
-            >
-              <TextComponent userId={userId} />
-
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignSelf: "flex-end"
-                }}
-              >
-                <Text
-                  style={{
-                    color: userId !== 1 ? "#fafefe" : "#000",
-                    paddingRight: 5,
-                    fontSize: 10
-                  }}
-                >
-                  {b}
-                </Text>
-                {userId !== 1 && <Read read={true} />}
-              </View>
-            </View>
+            {/* <TextComponent userId={userId} b={b} /> */}
+            <ImageComponent b={b} userId={userId} />
           </View>
           <View
             style={[
