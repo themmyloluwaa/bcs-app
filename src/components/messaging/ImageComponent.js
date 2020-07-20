@@ -14,7 +14,6 @@ const ImageComponent = ({ userId, ...props }) => {
   return (
     <TouchableWithoutFeedback
       onLongPress={() => {
-        console.log("working");
         tooltipRef.current.toggleTooltip();
       }}
     >

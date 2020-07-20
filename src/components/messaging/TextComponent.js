@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Alert } from "react-native";
 import { Tooltip } from "react-native-elements";
 import { copyText } from "../../../utils/clipboardUtil";
 import ReadComponent from "./ReadComponent";
@@ -11,7 +11,18 @@ const TextComponent = ({ userId, ...props }) => {
         padding: 20
       }}
     >
-      <Tooltip popover={<Text onPress={() => copyText()}>Copy</Text>}>
+      <Tooltip
+        popover={
+          <Text
+            onPress={() => {
+              copyText();
+              Alert.alert("Copied to clipboard");
+            }}
+          >
+            Copy
+          </Text>
+        }
+      >
         <Text
           style={{
             color: userId !== 1 ? "#fff" : "#000",
