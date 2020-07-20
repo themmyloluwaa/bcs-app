@@ -3,6 +3,38 @@ import { View, Text, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
 import { formateDate } from "../../../utils/dateFormatter";
 
+const Read = ({ read }) => {
+  if (!!read) {
+    return (
+      <>
+        <Icon
+          type="feather"
+          size={16}
+          name="check"
+          color="green"
+          containerStyle={{
+            //   backgroundColor: "#000",,
+            top: -4
+          }}
+        />
+        <Icon
+          type="feather"
+          size={18}
+          name="check"
+          color="green"
+          containerStyle={{
+            //   backgroundColor: "#000",
+            left: -16,
+            top: 0
+          }}
+        />
+      </>
+    );
+  }
+
+  return null;
+};
+
 const messages = [1, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1];
 const MessageBubble = () => {
   const b = formateDate("2020-07-13 14:00:39.16");
@@ -29,6 +61,15 @@ const MessageBubble = () => {
               }
             ]}
           >
+            {/* <Text
+              style={{
+                alignSelf: "flex-end",
+                paddingHorizontal: 10,
+                paddingVertical: 5
+              }}
+            >
+              Hello
+            </Text> */}
             <View
               style={{
                 padding: 20
@@ -36,7 +77,8 @@ const MessageBubble = () => {
             >
               <Text
                 style={{
-                  color: userId === 1 ? "#fff" : "#000"
+                  color: userId === 1 ? "#fff" : "#000",
+                  marginBottom: 10
                 }}
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -54,14 +96,22 @@ const MessageBubble = () => {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </Text>
-              <Text
+              <View
                 style={{
-                  alignSelf: "flex-end",
-                  color: userId === 1 ? "#fff" : "#000"
+                  flexDirection: "row",
+                  alignSelf: "flex-end"
                 }}
               >
-                {b}
-              </Text>
+                <Text
+                  style={{
+                    color: userId === 1 ? "#fff" : "#000",
+                    paddingRight: 5
+                  }}
+                >
+                  {b}
+                </Text>
+                <Read read={true} />
+              </View>
             </View>
           </View>
           <View
