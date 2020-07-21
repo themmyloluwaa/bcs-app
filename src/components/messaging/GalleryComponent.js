@@ -5,9 +5,22 @@ import { Image, Overlay, Button, Icon } from "react-native-elements";
 const { width } = Dimensions.get("window");
 import downloadAsset from "../../../utils/downloadAsset";
 const GalleryComponent = props => {
-  const [visible, setVisible, image, cb] = props.data;
+  const [
+    visible,
+    setVisible,
+    image,
+    cb,
+    setProgressVisible,
+    setDownloadProgress
+  ] = props.data;
   return (
-    <Overlay isVisible={visible} onBackdropPress={() => setVisible(false)}>
+    <Overlay
+      isVisible={visible}
+      onBackdropPress={() => setVisible(false)}
+      overlayStyle={{
+        backgroundColor: "transparent"
+      }}
+    >
       <View
         style={{
           minHeight: 200,
@@ -44,10 +57,17 @@ const GalleryComponent = props => {
             backgroundColor: "#490222"
           }}
           onPress={async () => {
+            setVisible(false);
+            setProgressVisible(true);
             const value = await downloadAsset(image, cb);
-            Alert.alert("Download Message", "download is complete", [
-              { text: "Ok", onPress: () => setVisible(false) }
-            ]);
+            setProgressVisible(false);
+            setDownloadProgress(0);
+
+            setTimeout(() => {
+              Alert.alert("Download Message", "download is complete", [
+                { text: "Ok" }
+              ]);
+            }, 200);
           }}
           icon={
             <Icon
@@ -68,7 +88,8 @@ const GalleryComponent = props => {
           type="outline"
           buttonStyle={{
             borderColor: "#490222",
-            minWidth: 140
+            minWidth: 140,
+            backgroundColor: "#fff"
           }}
           titleStyle={{
             color: "#490222"

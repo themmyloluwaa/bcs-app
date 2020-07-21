@@ -43,7 +43,7 @@ const MessageBubble = () => {
   //  b = formateDate("2020-07-13 14:00:39.16");
   b = formateDate();
 
-  const [userId, setUserId] = useState(1);
+  const [userId, setUserId] = useState(11);
   return (
     <>
       {[...messages, ...messages].map((data, i) => (

@@ -72,6 +72,7 @@ const ImageComponent = ({ userId, ...props }) => {
                 // "https://i.pinimg.com/originals/85/3f/af/853faf586b65a0ac4b63081404b186ce.gif"
               }}
               style={{ width: 200, height: 200 }}
+              resizeMode="cover"
               containerStyle={{
                 marginBottom: 5,
                 padding: 0
@@ -112,7 +113,9 @@ const ImageComponent = ({ userId, ...props }) => {
           visible,
           setVisible,
           "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg",
-          callback
+          callback,
+          setProgressVisible,
+          setDownloadProgress
         ]}
       />
       <DownloadProgress
