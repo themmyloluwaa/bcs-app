@@ -3,7 +3,7 @@ import { Text, View, Alert, TouchableWithoutFeedback } from "react-native";
 import { Tooltip } from "react-native-elements";
 import { copyText } from "../../../utils/clipboardUtil";
 import ReadComponent from "./ReadComponent";
-
+import Autolink from "react-native-autolink";
 const TextComponent = ({ userId, ...props }) => {
   const tooltipRef = useRef(null);
 
@@ -43,20 +43,30 @@ const TextComponent = ({ userId, ...props }) => {
               marginBottom: 10
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.
+            <Autolink
+              text="I am a software developer with 2+ years of experience building
+        scalable applications with react and nodejs. I started working with
+        nextjs late last year, and I am part of a team that has successfully
+        built a product that's used by over 500 users who are increasing
+        daily. I also work with nextjs in my personal projects. I recently
+        worked on a graphql- apollo-next js implementation with subscription
+        support. Link to apollo with nextjs subscription project
+        https://with-apollo-subscription.now.sh/subscription. I also work
+        with graphql and have successfully built graphql APIs following the
+        schema first approach and the code first approach. Link to graphql
+        project https://bcs-madeeasy-server.herokuapp.com/playground I am a
+        passionate learner and one who continues to seek ways to improve as
+        a developer and as a person. I believe you are looking for someone
+        who can navigate seamlessly between the frontend and backend and who
+        approaches development from a designer, developer, and, most
+        importantly, a user perspective. This is my profile, and I look
+        forward to hearing from you. Attached below are links to my projects
+        with respect to your needs and my resume. Thank you very much.
+        Philip
+
+        +2347032343594
+"
+            />
           </Text>
         </Tooltip>
 
