@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Icon, Tooltip } from "react-native-elements";
 import { formateDate } from "../../../utils/dateFormatter";
 import TextComponent from "./TextComponent";
@@ -52,9 +52,11 @@ const MessageBubble = props => {
   //  b = formateDate("2020-07-13 14:00:39.16");
   b = formateDate();
 
+  const [more, setMore] = props.more;
+
   const [userId, setUserId] = useState(11);
   return (
-    <>
+    <TouchableWithoutFeedback onPress={() => more === true && setMore(false)}>
       <View
         key={props.i}
         style={[
@@ -87,7 +89,7 @@ const MessageBubble = props => {
           ]}
         />
       </View>
-    </>
+    </TouchableWithoutFeedback>
   );
 };
 const styles = StyleSheet.create({

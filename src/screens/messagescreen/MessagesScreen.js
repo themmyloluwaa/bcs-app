@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StatusBar, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StatusBar,
+  ScrollView,
+  TouchableWithoutFeedback
+} from "react-native";
 import MessageHeader from "../../components/messaging/MessageHeader";
 import MessageBubble from "../../components/messaging/MessageBubble";
 import CustomInputComponent from "../../components/general/CustomInputComponent";
@@ -40,7 +46,11 @@ const MessagesScreen = ({ navigation, route }) => {
 
   // console.log(scrollRef);
   return (
-    <>
+    <View
+      style={{
+        flex: 1
+      }}
+    >
       <MessageHeader navigation={navigation} more={[more, setMore]} />
 
       <ScrollView
@@ -62,14 +72,18 @@ const MessagesScreen = ({ navigation, route }) => {
           barStyle={"light-content"}
           translucent={false}
         />
-        <View>
-          {messages.map((data, i) => (
-            <MessageBubble i={i} key={i} />
-          ))}
-        </View>
+        <TouchableWithoutFeedback
+          onPress={() => more === true && setMore(false)}
+        >
+          <View>
+            {messages.map((data, i) => (
+              <MessageBubble i={i} key={i} more={[more, setMore]} />
+            ))}
+          </View>
+        </TouchableWithoutFeedback>
       </ScrollView>
       {/* <CustomInputComponent placeholder="Make a post" /> */}
-    </>
+    </View>
   );
 };
 

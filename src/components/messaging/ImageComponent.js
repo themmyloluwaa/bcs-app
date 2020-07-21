@@ -20,8 +20,6 @@ const ImageComponent = ({ userId, ...props }) => {
         status,
         canAskAgain
       } = await MediaLibrary.requestPermissionsAsync();
-      const b = await MediaLibrary.getPermissionsAsync();
-      console.log(b);
       if (status === "granted") {
         setHasPermission(true);
       } else if (status === "denied" && canAskAgain === true) {

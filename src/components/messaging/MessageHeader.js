@@ -4,7 +4,8 @@ import {
   Text,
   StatusBar,
   Dimensions,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableWithoutFeedback
 } from "react-native";
 import { Icon, Avatar, Card, Divider } from "react-native-elements";
 import ShareWidget from "./ShareWidget";
@@ -20,67 +21,68 @@ const MessageHeader = props => {
         translucent={true}
         hidden={true}
       />
-
-      <View
-        style={
-          props.style
-            ? props.style
-            : {
-                backgroundColor: "#490222",
-                height: "10%",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-around",
-                paddingTop: Platform.OS === "ios" ? 15 : null
-              }
-        }
-      >
-        <Icon
-          name="arrow-left"
-          type="font-awesome"
-          size={20}
-          color="#fff"
-          onPress={() => props.navigation.goBack()}
-        />
+      <TouchableWithoutFeedback onPress={() => more === true && setMore(false)}>
         <View
-          style={{
-            flexDirection: "row",
-            marginTop: 10,
-            justifyContent: "center",
-            alignItems: "center"
-          }}
+          style={
+            props.style
+              ? props.style
+              : {
+                  backgroundColor: "#490222",
+                  height: "10%",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  paddingTop: Platform.OS === "ios" ? 15 : null
+                }
+          }
         >
-          <Avatar
-            source={{
-              uri:
-                "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg"
-            }}
-            size="medium"
-            rounded
-            renderPlaceholderContent={() => <ActivityIndicator />}
+          <Icon
+            name="arrow-left"
+            type="font-awesome"
+            size={20}
+            color="#fff"
+            onPress={() => props.navigation.goBack()}
           />
-          <Text
+          <View
             style={{
-              paddingHorizontal: 10,
-              fontSize: 18,
-              color: "#fff",
-              fontWeight: "600"
+              flexDirection: "row",
+              marginTop: 10,
+              justifyContent: "center",
+              alignItems: "center"
             }}
           >
-            Abdulaiman SUileman
-          </Text>
+            <Avatar
+              source={{
+                uri:
+                  "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg"
+              }}
+              size="medium"
+              rounded
+              renderPlaceholderContent={() => <ActivityIndicator />}
+            />
+            <Text
+              style={{
+                paddingHorizontal: 10,
+                fontSize: 18,
+                color: "#fff",
+                fontWeight: "600"
+              }}
+            >
+              Abdulaiman SUileman
+            </Text>
+          </View>
+          {
+            <Icon
+              name="dots-three-vertical"
+              type="entypo"
+              color="#fff"
+              size={20}
+              onPress={() => setMore(true)}
+            />
+          }
         </View>
-        {
-          <Icon
-            name="dots-three-vertical"
-            type="entypo"
-            color="#fff"
-            size={20}
+      </TouchableWithoutFeedback>
 
-            // onPress={() => props.navigation.navigate(props.route)}
-          />
-        }
-      </View>
       {more && <ShareWidget navigation={props.navigation} />}
     </>
   );

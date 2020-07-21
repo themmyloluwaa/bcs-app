@@ -6,10 +6,12 @@ import DownloadProgress from "./DownloadProgress";
 import { renderTitle } from "../../../utils/messagingHelpers";
 import ReadComponent from "./ReadComponent";
 
+import * as FileSystem from "expo-file-system";
+
 const DocumentComponent = props => {
   const tooltipRef = useRef(null);
   const textMessage = renderTitle(
-    "https://stackoverflow.com/questions/25077284/what-is-kcferrordomaincfnetwork-code-303.mp4"
+    "https://www.bcs.org/media/1225/heq-mar15-cert-cnt.pdf"
   );
   const textColor = props.userId === 1 ? "#000" : "#fff";
   const [downloadProgress, setDownloadProgress] = useState(0);
@@ -49,6 +51,12 @@ const DocumentComponent = props => {
                 paddingRight: 10
               }}
               onPress={async () => {
+                const a = await FileSystem.getInfoAsync(
+                  "file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540codekagei%252Fexpo-template-bare/heq-mar15-cert-cnt.pdf"
+                );
+
+                console.log(a);
+                return;
                 setProgressVisible(true);
                 const value = await downloadAsset(
                   "https://www.bcs.org/media/1225/heq-mar15-cert-cnt.pdf",
