@@ -47,7 +47,7 @@ const MessageBubble = () => {
   const [userId, setUserId] = useState(11);
   return (
     <>
-      {[...messages, ...messages].map((data, i) => (
+      {[...messages].map((data, i) => (
         <View
           key={i}
           style={[
@@ -66,8 +66,8 @@ const MessageBubble = () => {
               }
             ]}
           >
-            {/* <TextComponent userId={userId} b={b} /> */}
-            {/* <ImageComponent b={b} userId={userId} /> */}
+            {/* <TextComponent userId={userId} b={b} />
+            <ImageComponent b={b} userId={userId} /> */}
             <DocumentComponent b={b} userId={userId} />
           </View>
           <View

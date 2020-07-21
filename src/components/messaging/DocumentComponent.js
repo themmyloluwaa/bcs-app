@@ -3,27 +3,8 @@ import { View, Text, TouchableWithoutFeedback, Alert } from "react-native";
 import { Icon, Tooltip } from "react-native-elements";
 import downloadAsset from "../../../utils/downloadAsset";
 import DownloadProgress from "./DownloadProgress";
-
-const renderTitle = (text = "") => {
-  const splitText = text.split("/");
-
-  const extractName = splitText[splitText.length - 1];
-
-  const splitName = extractName.split(".");
-
-  // remove extension
-
-  const extractTitle = splitName[0];
-
-  return extractTitle.length >= 20
-    ? {
-        displayText: `${extractTitle.substring(0, 20)}.${
-          splitName[splitName.length - 1]
-        }`,
-        originalText: extractTitle.substring(0, 20)
-      }
-    : { displayText: splitName.join("."), originalText: extractTitle };
-};
+import { renderTitle } from "../../../utils/messagingHelpers";
+import ReadComponent from "./ReadComponent";
 
 const DocumentComponent = props => {
   const tooltipRef = useRef(null);
@@ -76,7 +57,7 @@ const DocumentComponent = props => {
                 );
 
                 setProgressVisible(false);
-                setDownloadProgress(null);
+                setDownloadProgress(0);
                 setTimeout(() => {
                   Alert.alert("Download Message", "file downloaded", [
                     {
@@ -93,22 +74,24 @@ const DocumentComponent = props => {
                 <Text
                   onPress={async () => {
                     tooltipRef.current.toggleTooltip();
-                    setProgressVisible(true);
-                    const value = await downloadAsset(
-                      "https://www.bcs.org/media/1225/heq-mar15-cert-cnt.pdf",
-                      callback,
-                      textMessage.originalText
-                    );
+                    setTimeout(async () => {
+                      setProgressVisible(true);
+                      const value = await downloadAsset(
+                        "https://www.bcs.org/media/1225/heq-mar15-cert-cnt.pdf",
+                        callback,
+                        textMessage.originalText
+                      );
 
-                    setTimeout(() => {
                       setProgressVisible(false);
-                      setDownloadProgress(null);
-                      Alert.alert("Download Message", "file downloaded", [
-                        {
-                          text: "Ok"
-                        }
-                      ]);
-                    }, 500);
+                      setDownloadProgress(0);
+                      setTimeout(() => {
+                        Alert.alert("Download Message", "file downloaded", [
+                          {
+                            text: "Ok"
+                          }
+                        ]);
+                      }, 200);
+                    }, 200);
                   }}
                 >
                   Download
@@ -124,6 +107,23 @@ const DocumentComponent = props => {
                 {textMessage.displayText}
               </Text>
             </Tooltip>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignSelf: "flex-end"
+            }}
+          >
+            <Text
+              style={{
+                color: props.userId !== 1 ? "#fafefe" : "#000",
+                paddingRight: 5,
+                fontSize: 10
+              }}
+            >
+              {props.b}
+            </Text>
+            {props.userId !== 1 && <ReadComponent read={true} />}
           </View>
         </View>
       </TouchableWithoutFeedback>

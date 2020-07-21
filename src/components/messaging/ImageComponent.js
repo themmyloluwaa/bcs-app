@@ -50,7 +50,7 @@ const ImageComponent = ({ userId, ...props }) => {
                   );
                   setProgressVisible(false);
 
-                  setDownloadProgress(null);
+                  setDownloadProgress(0);
                   setTimeout(() => {
                     Alert.alert("Download Message", "download is complete", [
                       {
