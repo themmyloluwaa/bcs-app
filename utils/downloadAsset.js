@@ -23,6 +23,8 @@ const downloadAsset = async (url = "", cb, name = "") => {
     const { uri } = await downloadResumable.downloadAsync();
     result = uri;
 
+    console.log(uri);
+
     return result;
   } catch (e) {
     // console.error(e);

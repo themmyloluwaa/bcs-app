@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Text, View, Alert } from "react-native";
 import { Tooltip } from "react-native-elements";
 import { copyText } from "../../../utils/clipboardUtil";
 import ReadComponent from "./ReadComponent";
 
 const TextComponent = ({ userId, ...props }) => {
+  const tooltipRef = useRef(null);
+
   return (
     <View
       style={{
@@ -12,11 +14,17 @@ const TextComponent = ({ userId, ...props }) => {
       }}
     >
       <Tooltip
+        ref={tooltipRef}
         popover={
           <Text
             onPress={() => {
-              copyText();
-              Alert.alert("Copied to clipboard");
+              copyText("temi");
+              Alert.alert("Feedback", "Copied to clipboard", [
+                {
+                  text: "Ok",
+                  onPress: () => tooltipRef.current.toggleTooltip()
+                }
+              ]);
             }}
           >
             Copy

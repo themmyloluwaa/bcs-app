@@ -5,6 +5,15 @@ import { formateDate } from "../../../utils/dateFormatter";
 import TextComponent from "./TextComponent";
 import ImageComponent from "./ImageComponent";
 import DocumentComponent from "./DocumentComponent";
+const renderChild = (index, props) => {
+  if (index === 0) {
+    return <TextComponent {...props} />;
+  } else if (index === 1) {
+    return <ImageComponent {...props} />;
+  } else {
+    return <DocumentComponent {...props} />;
+  }
+};
 
 const Read = ({ read }) => {
   if (!!read) {
@@ -38,8 +47,7 @@ const Read = ({ read }) => {
   return null;
 };
 
-const messages = [1, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1];
-const MessageBubble = () => {
+const MessageBubble = props => {
   let b;
   //  b = formateDate("2020-07-13 14:00:39.16");
   b = formateDate();
@@ -47,42 +55,38 @@ const MessageBubble = () => {
   const [userId, setUserId] = useState(11);
   return (
     <>
-      {[...messages].map((data, i) => (
+      <View
+        key={props.i}
+        style={[
+          styles.talkBubble,
+          {
+            flexDirection: userId !== 1 ? "row" : "row-reverse",
+            marginBottom: 20
+          }
+        ]}
+      >
         <View
-          key={i}
           style={[
-            styles.talkBubble,
+            styles.talkBubbleSquare,
             {
-              flexDirection: userId !== 1 ? "row" : "row-reverse",
-              marginBottom: 20
+              backgroundColor: userId !== 1 ? "#490222" : "#E6EFF0"
             }
           ]}
         >
-          <View
-            style={[
-              styles.talkBubbleSquare,
-              {
-                backgroundColor: userId !== 1 ? "#490222" : "#E6EFF0"
-              }
-            ]}
-          >
-            {/* <TextComponent userId={userId} b={b} />
-            <ImageComponent b={b} userId={userId} /> */}
-            <DocumentComponent b={b} userId={userId} />
-          </View>
-          <View
-            style={[
-              styles.talkBubbleTriangle,
-              {
-                borderRightWidth: userId !== 1 ? 26 : 0,
-                borderLeftWidth: userId !== 1 ? 0 : 26,
-                borderRightColor: userId !== 1 ? "#490222" : "",
-                borderLeftColor: userId !== 1 ? "" : "#E6EFF0"
-              }
-            ]}
-          />
+          {renderChild(props.i, { b, userId })}
         </View>
-      ))}
+        <View
+          style={[
+            styles.talkBubbleTriangle,
+            {
+              borderRightWidth: userId !== 1 ? 26 : 0,
+              borderLeftWidth: userId !== 1 ? 0 : 26,
+              borderRightColor: userId !== 1 ? "#490222" : "",
+              borderLeftColor: userId !== 1 ? "" : "#E6EFF0"
+            }
+          ]}
+        />
+      </View>
     </>
   );
 };

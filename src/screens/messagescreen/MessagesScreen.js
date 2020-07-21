@@ -8,6 +8,7 @@ const MessagesScreen = ({ navigation, route }) => {
   const [more, setMore] = useState(false);
   const [photo, setPhoto] = useState({});
   const [scrollRef, setScrollRef] = useState(undefined);
+  const messages = [1, 2, 3];
 
   copyText("fjfjfjf");
 
@@ -62,7 +63,9 @@ const MessagesScreen = ({ navigation, route }) => {
           translucent={false}
         />
         <View>
-          <MessageBubble />
+          {messages.map((data, i) => (
+            <MessageBubble i={i} key={i} />
+          ))}
         </View>
       </ScrollView>
       {/* <CustomInputComponent placeholder="Make a post" /> */}

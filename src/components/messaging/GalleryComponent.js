@@ -18,8 +18,14 @@ const GalleryComponent = props => {
       isVisible={visible}
       onBackdropPress={() => setVisible(false)}
       overlayStyle={{
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+        justifyContent: "center",
+        alignItems: "center"
       }}
+      containerStyle={{
+        height: 0
+      }}
+      fullScreen={true}
     >
       <View
         style={{
