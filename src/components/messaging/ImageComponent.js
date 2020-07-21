@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Alert
 } from "react-native";
+import * as MediaLibrary from "expo-media-library";
 import { Image, Tooltip } from "react-native-elements";
 import ReadComponent from "./ReadComponent";
 import GalleryComponent from "./GalleryComponent";
@@ -13,7 +14,35 @@ import downloadAsset from "../../../utils/downloadAsset";
 import DownloadProgress from "./DownloadProgress";
 
 const ImageComponent = ({ userId, ...props }) => {
+  useEffect(() => {
+    (async () => {
+      const {
+        status,
+        canAskAgain
+      } = await MediaLibrary.requestPermissionsAsync();
+      const b = await MediaLibrary.getPermissionsAsync();
+      console.log(b);
+      if (status === "granted") {
+        setHasPermission(true);
+      } else if (status === "denied" && canAskAgain === true) {
+        Alert.alert(
+          "Gallery Permission Request",
+          "Gallery permissions needed for app to function",
+          [
+            {
+              text: "Ok",
+              onPress: async () => await MediaLibrary.requestPermissionsAsync()
+            }
+          ]
+        );
+      } else {
+        setHasPermission(false);
+      }
+    })();
+  }, []);
+
   const tooltipRef = useRef(null);
+  const [hasPermission, setHasPermission] = useState(null);
   const [visible, setVisible] = useState(false);
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [progressVisible, setProgressVisible] = useState(false);
@@ -22,6 +51,18 @@ const ImageComponent = ({ userId, ...props }) => {
     const progress = dp.totalBytesWritten / dp.totalBytesExpectedToWrite;
     setDownloadProgress(progress);
   };
+
+  if (hasPermission === null) {
+    (async () => {
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+      const b = await MediaLibrary.getPermissionsAsync();
+      console.log(b);
+      setHasPermission(status === "granted");
+    })();
+  }
+  if (hasPermission === false) {
+    return <View />;
+  }
 
   return (
     <>
@@ -48,6 +89,8 @@ const ImageComponent = ({ userId, ...props }) => {
                     "https://i.pinimg.com/originals/85/3f/af/853faf586b65a0ac4b63081404b186ce.gif",
                     callback
                   );
+
+                  await MediaLibrary.saveToLibraryAsync(value);
                   setProgressVisible(false);
 
                   setDownloadProgress(0);
@@ -67,8 +110,7 @@ const ImageComponent = ({ userId, ...props }) => {
             <Image
               source={{
                 uri:
-                  "file:///Users/developer/Library/Developer/CoreSimulator/Devices/E488FD70-3257-4E23-92B7-F245F2D59426/data/Containers/Data/Application/DC343C86-F2C2-46A8-B572-02AA35572D52/Documents/ExponentExperienceData/%2540codekagei%252Fexpo-template-bare/BCS-ME_1595280064869"
-                // "https://i.pinimg.com/originals/85/3f/af/853faf586b65a0ac4b63081404b186ce.gif"
+                  "https://i.pinimg.com/originals/85/3f/af/853faf586b65a0ac4b63081404b186ce.gif"
               }}
               style={{ width: 200, height: 200 }}
               resizeMode="cover"
@@ -114,7 +156,9 @@ const ImageComponent = ({ userId, ...props }) => {
           "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg",
           callback,
           setProgressVisible,
-          setDownloadProgress
+          setDownloadProgress,
+          hasPermission,
+          setHasPermission
         ]}
       />
       <DownloadProgress

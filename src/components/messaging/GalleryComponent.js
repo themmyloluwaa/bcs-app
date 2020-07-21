@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Dimensions, ActivityIndicator, Alert } from "react-native";
 import { Image, Overlay, Button, Icon } from "react-native-elements";
-
+import * as MediaLibrary from "expo-media-library";
 const { width } = Dimensions.get("window");
 import downloadAsset from "../../../utils/downloadAsset";
 const GalleryComponent = props => {
@@ -66,6 +66,7 @@ const GalleryComponent = props => {
             setVisible(false);
             setProgressVisible(true);
             const value = await downloadAsset(image, cb);
+            await MediaLibrary.saveToLibraryAsync(value);
             setProgressVisible(false);
             setDownloadProgress(0);
 
