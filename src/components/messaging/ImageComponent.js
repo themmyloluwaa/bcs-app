@@ -11,14 +11,15 @@ import { Image, Tooltip, Overlay, Button, Icon } from "react-native-elements";
 import ReadComponent from "./ReadComponent";
 import GalleryComponent from "./GalleryComponent";
 import downloadAsset from "../../../utils/downloadAsset";
+import DownloadProgress from "./DownloadProgress";
 
 const ImageComponent = ({ userId, ...props }) => {
   const tooltipRef = useRef(null);
   const [visible, setVisible] = useState(false);
-  const [downloadProgress, setDownloadProgress] = useState(null);
+  const [downloadProgress, setDownloadProgress] = useState(0);
+  const [progressVisible, setProgressVisible] = useState(false);
 
   const callback = dp => {
-    // console.log(dp.totalBytesWritten, "/", dp.totalBytesExpectedToWrite);
     const progress = dp.totalBytesWritten / dp.totalBytesExpectedToWrite;
     setDownloadProgress(progress);
   };
@@ -42,17 +43,22 @@ const ImageComponent = ({ userId, ...props }) => {
             popover={
               <Text
                 onPress={async () => {
+                  tooltipRef.current.toggleTooltip();
+                  setProgressVisible(true);
                   const value = await downloadAsset(
                     "https://i.pinimg.com/originals/85/3f/af/853faf586b65a0ac4b63081404b186ce.gif",
                     callback
                   );
-                  console.log(value);
-                  Alert.alert("Download Message", "download is complete", [
-                    {
-                      text: "Ok",
-                      onPress: () => tooltipRef.current.toggleTooltip()
-                    }
-                  ]);
+                  setProgressVisible(false);
+
+                  setDownloadProgress(null);
+                  setTimeout(() => {
+                    Alert.alert("Download Message", "download is complete", [
+                      {
+                        text: "Ok"
+                      }
+                    ]);
+                  }, 200);
                 }}
               >
                 Download
@@ -62,8 +68,8 @@ const ImageComponent = ({ userId, ...props }) => {
             <Image
               source={{
                 uri:
-                  // "file:///Users/developer/Library/Developer/CoreSimulator/Devices/E488FD70-3257-4E23-92B7-F245F2D59426/data/Containers/Data/Application/DC343C86-F2C2-46A8-B572-02AA35572D52/Documents/ExponentExperienceData/%2540codekagei%252Fexpo-template-bare/BCS-ME_1595280064869"
-                  "https://i.pinimg.com/originals/85/3f/af/853faf586b65a0ac4b63081404b186ce.gif"
+                  "file:///Users/developer/Library/Developer/CoreSimulator/Devices/E488FD70-3257-4E23-92B7-F245F2D59426/data/Containers/Data/Application/DC343C86-F2C2-46A8-B572-02AA35572D52/Documents/ExponentExperienceData/%2540codekagei%252Fexpo-template-bare/BCS-ME_1595280064869"
+                // "https://i.pinimg.com/originals/85/3f/af/853faf586b65a0ac4b63081404b186ce.gif"
               }}
               style={{ width: 200, height: 200 }}
               containerStyle={{
@@ -108,6 +114,9 @@ const ImageComponent = ({ userId, ...props }) => {
           "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg",
           callback
         ]}
+      />
+      <DownloadProgress
+        data={[progressVisible, setProgressVisible, downloadProgress]}
       />
     </>
   );
