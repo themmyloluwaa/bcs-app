@@ -4,10 +4,9 @@ import {
   Text,
   ActivityIndicator,
   TouchableWithoutFeedback,
-  Dimensions,
   Alert
 } from "react-native";
-import { Image, Tooltip, Overlay, Button, Icon } from "react-native-elements";
+import { Image, Tooltip } from "react-native-elements";
 import ReadComponent from "./ReadComponent";
 import GalleryComponent from "./GalleryComponent";
 import downloadAsset from "../../../utils/downloadAsset";

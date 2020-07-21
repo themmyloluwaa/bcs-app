@@ -6,6 +6,7 @@ import { Overlay } from "react-native-elements";
 const { width } = Dimensions.get("window");
 const DownloadProgress = props => {
   const [isVisible, setIsVisible, number] = props.data;
+  useEffect(() => {}, [isVisible]);
   const value = Math.floor(number * 100);
   let color;
   if (value === 0) {

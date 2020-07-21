@@ -4,6 +4,7 @@ import { Icon, Tooltip } from "react-native-elements";
 import { formateDate } from "../../../utils/dateFormatter";
 import TextComponent from "./TextComponent";
 import ImageComponent from "./ImageComponent";
+import DocumentComponent from "./DocumentComponent";
 
 const Read = ({ read }) => {
   if (!!read) {
@@ -66,7 +67,8 @@ const MessageBubble = () => {
             ]}
           >
             {/* <TextComponent userId={userId} b={b} /> */}
-            <ImageComponent b={b} userId={userId} />
+            {/* <ImageComponent b={b} userId={userId} /> */}
+            <DocumentComponent b={b} userId={userId} />
           </View>
           <View
             style={[
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   talkBubbleSquare: {
-    minHeight: 80,
+    minHeight: 50,
     maxHeight: "100%",
     maxWidth: "80%",
     minWidth: 120,
