@@ -75,7 +75,7 @@ const MessageBubble = props => {
             }
           ]}
         >
-          {renderChild(props.i, { b, userId })}
+          {renderChild(props.i, { b, userId, more, setMore })}
         </View>
         <View
           style={[

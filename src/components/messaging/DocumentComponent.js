@@ -28,6 +28,9 @@ const DocumentComponent = props => {
         onLongPress={() => {
           tooltipRef.current.toggleTooltip();
         }}
+        onPress={() => {
+          props.more === true && props.setMore(false);
+        }}
       >
         <View
           style={{

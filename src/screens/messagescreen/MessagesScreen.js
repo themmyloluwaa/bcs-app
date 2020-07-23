@@ -4,12 +4,15 @@ import {
   Text,
   StatusBar,
   ScrollView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Keyboard,
+  Platform
 } from "react-native";
 import MessageHeader from "../../components/messaging/MessageHeader";
 import MessageBubble from "../../components/messaging/MessageBubble";
-import CustomInputComponent from "../../components/general/CustomInputComponent";
 import { copyText, pasteText } from "../../../utils/clipboardUtil";
+import TextInputComponent from "../../components/messaging/TextInputComponent";
 const MessagesScreen = ({ navigation, route }) => {
   const [more, setMore] = useState(false);
   const [photo, setPhoto] = useState({});
@@ -46,10 +49,11 @@ const MessagesScreen = ({ navigation, route }) => {
 
   // console.log(scrollRef);
   return (
-    <View
+    <KeyboardAvoidingView
       style={{
         flex: 1
       }}
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
       <MessageHeader navigation={navigation} more={[more, setMore]} />
 
@@ -83,7 +87,8 @@ const MessagesScreen = ({ navigation, route }) => {
         </TouchableWithoutFeedback>
       </ScrollView>
       {/* <CustomInputComponent placeholder="Make a post" /> */}
-    </View>
+      <TextInputComponent data={[more, setMore]} />
+    </KeyboardAvoidingView>
   );
 };
 
