@@ -24,7 +24,7 @@ const createAppNavigator = () => (
   >
     <BottomNavigator.Screen
       name="Learning"
-      children={learningStackNavigator}
+      component={LearningScreen}
       options={{
         tabBarIcon: () => <Icon name="book-open" size={25} color="#fff" />
       }}

@@ -24,6 +24,7 @@ const TopicComponent = props => {
                 onPress={() => props.navigation.navigate("Content")}
               />
             )}
+            onPress={() => props.navigation.navigate("Content")}
             bottomDivider
             containerStyle={{
               height: 70,

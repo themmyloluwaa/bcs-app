@@ -18,98 +18,102 @@ import PastQuestionDiscussionScreen from "../screens/PastQuestionDiscussionScree
 import PastQuestionDiscussionThreadScreen from "../screens/PastQuestionDiscussionThreadScreen";
 // import PastQuestionAnswer from "../screens/PastQuestionAnswer";
 
-const LearningStackNavigator = createStackNavigator();
-const ResourceStackNavigator = createStackNavigator();
-const DiscussionNavigator = createStackNavigator();
-const PastQuestionDiscussionNavigator = createStackNavigator();
-const QuizNavigator = createStackNavigator();
-const ChatNavigator = createStackNavigator();
-const RequestNavigator = createStackNavigator();
+const LearningContainerNavigator = createStackNavigator();
+const ResourceContainerNavigator = createStackNavigator();
+const DiscussionContainerNavigator = createStackNavigator();
+const PastQuestionDiscussionContainerNavigator = createStackNavigator();
+const QuizContainerNavigator = createStackNavigator();
+const ChatContainerNavigator = createStackNavigator();
+const RequestContainerNavigator = createStackNavigator();
 
 const topicDicussionNavigator = () => (
-  <DiscussionNavigator.Navigator>
-    <DiscussionNavigator.Screen
+  <DiscussionContainerNavigator.Navigator>
+    <DiscussionContainerNavigator.Screen
       name="Topic Forum"
       component={DiscussionScreen}
     />
-    <DiscussionNavigator.Screen
+    <DiscussionContainerNavigator.Screen
       name="Topic Thread"
       component={DiscussionThreadScreen}
     />
-  </DiscussionNavigator.Navigator>
+  </DiscussionContainerNavigator.Navigator>
 );
 
 const pastQuestionDicussionNavigator = () => (
-  <PastQuestionDiscussionNavigator.Navigator initialRouteName="Question Forum">
-    <PastQuestionDiscussionNavigator.Screen
+  <PastQuestionDiscussionContainerNavigator.Navigator initialRouteName="Question Forum">
+    <PastQuestionDiscussionContainerNavigator.Screen
       name="Question Forum"
       component={PastQuestionDiscussionScreen}
     />
-    <PastQuestionDiscussionNavigator.Screen
+    <PastQuestionDiscussionContainerNavigator.Screen
       name="Question Thread"
       component={PastQuestionDiscussionThreadScreen}
     />
-  </PastQuestionDiscussionNavigator.Navigator>
+  </PastQuestionDiscussionContainerNavigator.Navigator>
 );
 
 const quizNavigator = () => (
-  <QuizNavigator.Navigator initialRouteName="Quiz Question">
-    <QuizNavigator.Screen name="Quiz Question" component={QuizScreen} />
-    {/* <QuizNavigator.Screen name="Quiz Answer" component={QuizScreen} /> */}
-    <QuizNavigator.Screen name="Quiz Final" component={QuizResultScreen} />
-  </QuizNavigator.Navigator>
+  <QuizContainerNavigator.Navigator initialRouteName="Quiz Question">
+    <QuizContainerNavigator.Screen
+      name="Quiz Question"
+      component={QuizScreen}
+    />
+    <QuizContainerNavigator.Screen
+      name="Quiz Final"
+      component={QuizResultScreen}
+    />
+  </QuizContainerNavigator.Navigator>
 );
 
 export const learningStackNavigator = () => (
-  <LearningStackNavigator.Navigator>
-    <LearningStackNavigator.Screen
-      name="Resource Home"
-      component={LearningScreen}
+  <LearningContainerNavigator.Navigator>
+    <LearningContainerNavigator.Screen name="Course" component={CourseScreen} />
+    <LearningContainerNavigator.Screen
+      name="Content"
+      component={ContentScreen}
     />
-    <LearningStackNavigator.Screen name="Course" component={CourseScreen} />
-    <LearningStackNavigator.Screen name="Content" component={ContentScreen} />
-    <LearningStackNavigator.Screen
+    <LearningContainerNavigator.Screen
       name="Learning Discussion"
       children={topicDicussionNavigator}
     />
-    <LearningStackNavigator.Screen name="Quiz" children={quizNavigator} />
-  </LearningStackNavigator.Navigator>
+    <LearningContainerNavigator.Screen name="Quiz" children={quizNavigator} />
+  </LearningContainerNavigator.Navigator>
 );
 
 export const resourceStackNavigator = () => (
-  <ResourceStackNavigator.Navigator>
-    <ResourceStackNavigator.Screen
+  <ResourceContainerNavigator.Navigator>
+    <RequestContainerNavigator.Screen
       name="Resource Home"
       component={ResourceScreen}
     />
-    <ResourceStackNavigator.Screen
+    <RequestContainerNavigator.Screen
       name="Resource Questions"
       component={PastQuestionQuestion}
     />
-    <ResourceStackNavigator.Screen
+    <RequestContainerNavigator.Screen
       name="Resource Answers"
       component={PastQuestionAnswer}
     />
-    <ResourceStackNavigator.Screen
+    <RequestContainerNavigator.Screen
       name="Resource Discussions"
       children={pastQuestionDicussionNavigator}
     />
-  </ResourceStackNavigator.Navigator>
+  </ResourceContainerNavigator.Navigator>
 );
 
 export const chatNavigator = () => (
-  <ChatNavigator.Navigator initialRouteName="Chats">
+  <ChatContainerNavigator.Navigator initialRouteName="Chats">
     <ChatNavigator.Screen name="Chats" component={ChatScreen} />
     <ChatNavigator.Screen name="Chatting" component={MessagesScreen} />
     <ChatNavigator.Screen
       name="Chats Reciever Profile"
       component={ChatScreen}
     />
-  </ChatNavigator.Navigator>
+  </ChatContainerNavigator.Navigator>
 );
 
 export const requestNavigator = () => (
-  <RequestNavigator.Navigator initialRouteName="Requests">
+  <RequestContainerNavigator.Navigator initialRouteName="Requests">
     <RequestNavigator.Screen name="Requests" component={RequestScreen} />
     <RequestNavigator.Screen
       name="Requests Chatting"
@@ -119,5 +123,5 @@ export const requestNavigator = () => (
       name="Requests Reciever Profile"
       component={RequestScreen}
     />
-  </RequestNavigator.Navigator>
+  </RequestContainerNavigator.Navigator>
 );
