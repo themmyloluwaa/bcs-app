@@ -61,7 +61,7 @@ const ChatScreen = ({ navigation }) => {
             return (
               <>
                 <ListItem
-                  onPress={() => navigation.navigate("Chats Chatting")}
+                  onPress={() => navigation.navigate("Chatting")}
                   leftAvatar={{
                     source,
                     avatarStyle: { resizeMode: "cover", borderRadius: 5 },

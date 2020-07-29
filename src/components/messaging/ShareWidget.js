@@ -40,9 +40,7 @@ const ShareWidget = ({ navigation }) => {
         }}
       />
       <TouchableWithoutFeedback
-        onPress={() =>
-          navigation.navigate("Camera", { route: "Chats Chatting" })
-        }
+      // onPress={() => navigation.navigate("Camera", { route: "Chatting" })}
       >
         <View
           style={{

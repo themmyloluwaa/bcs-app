@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import createAppNavigator from "./appBottomNavigator";
 import authNavigation from "./authStackNavigation";
+import { MessageStackNavigator } from "./messageNavigator";
 
 import CameraScreen from "../screens/CameraScreen";
 import EditImage from "../screens/EditImage";
@@ -23,6 +24,7 @@ const AllNavigator = () => (
     <AppNavigator.Screen children={createAppNavigator} name="App" />
     <AppNavigator.Screen component={CameraScreen} name="Camera" />
     <AppNavigator.Screen component={EditImage} name="Edit Image" />
+    <AppNavigator.Screen component={MessageStackNavigator} name="Chatting" />
   </AppNavigator.Navigator>
 );
 

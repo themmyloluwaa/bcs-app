@@ -3,12 +3,12 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import Icon from "react-native-vector-icons/FontAwesome5";
 const BottomNavigator = createMaterialBottomTabNavigator();
 
-// import LearningScreen from "../screens/appscreen/LearningScreen";
-// import AccountScreen from "../screens/appscreen/AccountScreen";
-// import MessageScreen from "../screens/appscreen/MessageScreen";
-// import ResourceScreen from "../screens/appscreen/ResourceScreen";
+import LearningScreen from "../screens/appscreen/LearningScreen";
+import AccountScreen from "../screens/appscreen/AccountScreen";
+import MessageScreen from "../screens/appscreen/MessageScreen";
+import ResourceScreen from "../screens/appscreen/ResourceScreen";
 
-import { MessageNavigator } from "./messageNavigator";
+import { MessageTabNavigator } from "./messageNavigator";
 import {
   learningStackNavigator,
   resourceStackNavigator
@@ -38,7 +38,7 @@ const createAppNavigator = () => (
     />
     <BottomNavigator.Screen
       name="Messages"
-      children={MessageNavigator}
+      children={MessageTabNavigator}
       options={{
         tabBarIcon: () => <Icon name="comment-alt" size={25} color="#fff" />
       }}

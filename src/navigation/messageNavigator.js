@@ -4,14 +4,14 @@ import { chatNavigator, requestNavigator } from "./appStackNavigators";
 import ChatScreen from "../screens/messagescreen/ChatScreen";
 import MessagesScreen from "../screens/messagescreen/MessagesScreen";
 import RequestScreen from "../screens/messagescreen/RequestScreen";
-const MessageTopNavigator = createMaterialTopTabNavigator();
 
 import NewChatScreen from "../screens/messagescreen/NewChatScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 
+const MessageTopNavigator = createMaterialTopTabNavigator();
 const MessageContainerNavigator = createStackNavigator();
 
-const messageNavigator = () => (
+export const MessageTabNavigator = () => (
   <MessageTopNavigator.Navigator
     initialRouteName="Chats"
     tabBarOptions={{
@@ -27,19 +27,15 @@ const messageNavigator = () => (
     <MessageTopNavigator.Screen name="Request" component={RequestScreen} />
   </MessageTopNavigator.Navigator>
 );
-export const MessageNavigator = () => (
-  <MessageContainerNavigator.Navigator>
-    <MessageContainerNavigator.Screen
-      children={messageNavigator}
-      name="Chats"
-    />
+export const MessageStackNavigator = () => (
+  <MessageContainerNavigator.Navigator initialRouteName="Chatting">
     <MessageContainerNavigator.Screen
       component={NewChatScreen}
       name="New Message"
     />
     <MessageContainerNavigator.Screen
       component={MessagesScreen}
-      name="Chats Chatting"
+      name="Chatting"
     />
   </MessageContainerNavigator.Navigator>
 );

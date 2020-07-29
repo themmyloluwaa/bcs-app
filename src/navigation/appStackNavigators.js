@@ -100,7 +100,7 @@ export const resourceStackNavigator = () => (
 export const chatNavigator = () => (
   <ChatNavigator.Navigator initialRouteName="Chats">
     <ChatNavigator.Screen name="Chats" component={ChatScreen} />
-    <ChatNavigator.Screen name="Chats Chatting" component={MessagesScreen} />
+    <ChatNavigator.Screen name="Chatting" component={MessagesScreen} />
     <ChatNavigator.Screen
       name="Chats Reciever Profile"
       component={ChatScreen}
