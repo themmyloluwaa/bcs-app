@@ -31,7 +31,7 @@ const createAppNavigator = () => (
     />
     <BottomNavigator.Screen
       name="Resources"
-      children={resourceStackNavigator}
+      component={ResourceScreen}
       options={{
         tabBarIcon: () => <Icon name="file-alt" size={25} color="#fff" />
       }}

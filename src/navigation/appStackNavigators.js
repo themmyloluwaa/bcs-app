@@ -65,7 +65,7 @@ const quizNavigator = () => (
   </QuizContainerNavigator.Navigator>
 );
 
-export const learningStackNavigator = () => (
+export const LearningStackNavigator = () => (
   <LearningContainerNavigator.Navigator>
     <LearningContainerNavigator.Screen name="Course" component={CourseScreen} />
     <LearningContainerNavigator.Screen
@@ -80,12 +80,8 @@ export const learningStackNavigator = () => (
   </LearningContainerNavigator.Navigator>
 );
 
-export const resourceStackNavigator = () => (
+export const ResourceStackNavigator = () => (
   <ResourceContainerNavigator.Navigator>
-    <RequestContainerNavigator.Screen
-      name="Resource Home"
-      component={ResourceScreen}
-    />
     <RequestContainerNavigator.Screen
       name="Resource Questions"
       component={PastQuestionQuestion}

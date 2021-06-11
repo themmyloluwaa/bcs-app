@@ -5,7 +5,10 @@ import createAppNavigator from "./appBottomNavigator";
 import authNavigation from "./authStackNavigation";
 import { MessageStackNavigator } from "./messageNavigator";
 
-import { learningStackNavigator } from "./appStackNavigators";
+import {
+  LearningStackNavigator,
+  ResourceStackNavigator
+} from "./appStackNavigators";
 
 import CameraScreen from "../screens/CameraScreen";
 import EditImage from "../screens/EditImage";
@@ -27,7 +30,11 @@ const AllNavigator = () => (
     <AppNavigator.Screen component={CameraScreen} name="Camera" />
     <AppNavigator.Screen component={EditImage} name="Edit Image" />
     <AppNavigator.Screen component={MessageStackNavigator} name="Chatting" />
-    <AppNavigator.Screen component={learningStackNavigator} name="Course" />
+    <AppNavigator.Screen component={LearningStackNavigator} name="Course" />
+    <AppNavigator.Screen
+      component={ResourceStackNavigator}
+      name="Resource Questions"
+    />
   </AppNavigator.Navigator>
 );
 
